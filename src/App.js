@@ -1,31 +1,20 @@
 import React from 'react';
-import { useState } from "react";
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { Navbar } from "./Animations/Navbar.js"
-import Projects from './Projects.js';
-import About from './About.js';
-import './App.css';
-
-function App() {
-  const [count, setCount] = useState(0);
-  return (
-
-    <BrowserRouter>
-
-      <div className="App">
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import Home from './home';
 
 
-        <Route exact path="/work" component={Projects} />
-        <Route exact path="/about" component={About} />
 
-        <div className="navigation">
-          <Navbar key={count} />
+class App extends React.Component {
 
-        </div>
-
-      </div>
-    </BrowserRouter>
-  );
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Home} />
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
