@@ -3,16 +3,17 @@
 
 * {
   box-sizing: border-box;
-  cursor: none;
+  cursor: hidden;
 }
 
 body {
-  width: 100%;
-  height: 100%;
   margin: 0px;
-  overflow: hidden;
-  background-image: url("images/background.png");
-  cursor: none;
+
+  overflow-x: hidden;
+}
+
+:root{
+  --main-grey-color: rgba(26, 26, 27, 1);
 }
 
 #navbar a {
@@ -41,24 +42,9 @@ body {
 
 
 #website {
-  background: rgba(255, 255, 255, 0.99);
-  height: 100vh;
-  overflow: scroll;
+  width: auto;
+  height: auto;
 }
-
-/*.cursor {
-  width: 18px;
-  height: 18px;
-  position: absolute;
-
-  top: 0px;
-  left: 0px;
-
-  /*border: 1px solid #FFFFFF;
-  background: white;
-  border-radius: 50%;
-  opacity: 1;
-}*/
 
 .cursor{
   width: 24px;
@@ -67,12 +53,11 @@ body {
   z-index: 997;
   box-shadow: 2px;
   z-index: 997;
-  top: -2.85px;
-  left: -3px;
-  border: .9px dashed;
-  border-color: blue;
+
+  /*border: .9px dashed;*/
+  background-color: blue;
   border-radius: 50%;
-  animation: cursorAnim 20s infinite;
+  /*animation: cursorAnim 20s infinite;*/
 
 }
 
@@ -88,7 +73,7 @@ body {
 
 
 #navbar {
-  position: sticky;
+  position: fixed;
   -webkit-position: sticky;
   float:left;
   background-color: none;
@@ -96,7 +81,7 @@ body {
   width: 100%;
   font-size: 12px;
   line-height: 1.25;
-  color: black;
+  color: white;
   font-family: 'acumin-pro-wide', sans-serif;
   font-weight: 600;
   font-style: normal;
@@ -148,37 +133,98 @@ body {
 
 
 #page{
+  z-index: 0;
   height: 300vh;
   width: 100vw;
+  position: absolute;
+  display: grid;
 }
 
 #home{
-  height: 33%;
+  grid-row-start: 1;
+  height: 100vh;
   width: 100%;
+  position: relative;
+  background: rgb(8, 8, 9);
+  z-index: 1;
 
+}
+
+#homeimage{
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-top: 15vh;
+  height: 50%;
+  width: auto;
+  z-index: 20;
+  position: relative;
+  z-index: 2;
+  background-size: 100% auto;
 
 
 }
-#blue-block{
-  margin-left: 100px;
-  margin-right: 100px;
-  height: 75vh;
-  width: auto;
-  background-color: blue;
-  z-index: 20;
-  margin-top: 20vh;
-  position: relative;
-  z-index: 2;
-  box-shadow: 1px 10px 28px rgba(200, 200, 200, .7);
+
+/*#homeimage:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .4;
+  background-image: url('./images/me.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+
+}*/
+
+#home .scroll{
+  width: 30vw;
+  position: absolute;
+  bottom:80%;
+  left:-10vw;
+  transform: rotate(-90deg);
+}
+
+#home .scroll span{
+  width: 80%;
+  background: blue;
+  height: 1px;
+  display: inline-block;
+  margin-bottom: 2pt;
+}
+
+#home .scroll p{
+  margin-top: 9pt;
+  margin-left: 12pt;
+  font-size: 10pt;
+  color: blue;
+  font-family: 'acumin-pro-wide', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 2.5px;
+  display: inline-block;
+}
+
+#home .categories{
+  position: absolute;
+  left:10%;
+  top:8vh;
+  z-index: 40;
+  font-size: 20pt;
+  color: var(--main-grey-color);
+  font-family: 'acumin-pro-wide', sans-serif;
+  font-weight: 400;
+  line-height: .1;
+  font-style: normal;
+  letter-spacing: 2.5px;
 }
 
 
 .designer-statment{
   height: 25%;
-  width: 25%;
-  margin-top: 20px;
-  margin-left: 20px;
-  position: absolute;
+  width: 200%;
+
 
 
 }
@@ -192,17 +238,40 @@ body {
   margin-bottom: 6px;
 }
 
+/*.designer-statment p::after{
+  text-transform: lowercase;
+  content: "industrial \A graphic \A ui/ux"
+}*/
+
+
 .designer-statment p{
+  position: absolute;
+  top:auto;
+  width: 1000%;
+  left:0px;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 5vh;
   line-height: 1.25;
   color: white;
   font-family: 'acumin-pro-wide', sans-serif;
   font-weight: 500;
   font-style: normal;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   white-space: pre-line;
+  animation: textAnim 20s infinite alternate;
 }
+
+@keyframes textAnim{
+  from{
+
+    left:0px;
+  }
+  to{
+    left: -1000px;
+  }
+}
+
+
 
 .intro{
   top:30%;
@@ -215,10 +284,6 @@ body {
 
 }
 
-.designer-statment p::after{
-  text-transform: lowercase;
-  content: "industrial \A graphic \A ui/ux"
-}
 
 .intro p{
   margin-left: 20px;
@@ -246,21 +311,32 @@ body {
     margin-bottom: 1px
 }
 
-.e-logo{
-  opacity: 0;
+.logo{
+  opacity: 1;
+  margin-left: auto;
+  margin-right: auto + 9%;
   margin-top: 20px;
-  height: 80px;
-  width: auto;
+  height: 100%;
+  width: 100%;
   position: relative;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url('images/Elogo.svg')
 }
 
+.logo img{
+  position: absolute;
+  height:70%;
+  top:30px;
+  left: 10%;
+}
+.logo img:nth-of-type(2){
+  opacity: 0;
+}
+
+
 #about{
+  grid-row-start: 4;
   position: relative;
   width: 100vw;
-  height: 100%;
+  height: auto;
 }
 
 .about-title{
@@ -280,7 +356,7 @@ body {
 }
 
 #projects{
-  padding-top: 20px;
+  grid-row-start: 2;
   position: relative;
   width: 100vw;
   height: auto;
@@ -288,7 +364,7 @@ body {
 
 .work-title{
   position: absolute;
-  z-index: 50;
+  z-index: 51;
   top:-90px;
   margin-left: 88px;
   font-size: 110px;
@@ -299,7 +375,7 @@ body {
   font-style: normal;
   letter-spacing: 0px;
   -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: blue;
 }
 .list{
   width: 100%;
@@ -307,84 +383,169 @@ body {
 }
 
 .project-container{
-  width: 100%;
-  height: 80vh;
-  padding-top: 20px;
+  width: 100vw;
+  height: 590px;
+  padding-left: 10%;
+  margin-top: 25vh;
+  margin-bottom: 25vh;
+  position: relative;
+  float:left;
 
+  color: black;
+  font-family: 'acumin-pro-wide', sans-serif;
+  letter-spacing: 1.5px
 }
 
 .list .project-container .title{
+  overflow: hidden;
+  font-style: italic;
+  position: absolute;
   z-index: 50;
-  padding-left: 85px;
-  top:70px;
-  text-align: left;
-  font-size: 40px;
+  top:1%;
+  left:50%;
+  font-size: 60pt;
   line-height: 1.25;
-  color: black;
-  font-family: 'acumin-pro-wide', sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  letter-spacing: 0px;
+  text-transform: uppercase;
+  font-weight: 800;
+  width: 30%;
 
 }
 
-.list .project-container .wrapper{
-  float: left;
-  position: relative;
+/*.list .project-container .order {
+  position: absolute;
+  z-index: 50;
+  top: 615px;
+  left:calc(50% - 100px);
+  font-size: 60pt;
+  line-height: 1.25;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 1);
+  -webkit-text-stroke-width: 1pt;
+  -webkit-text-stroke-color: black;
+}*/
+
+.list .project-container .arrow{
+  position: absolute;
+  top: 115%;
+  left: calc(10% + 835px);
+  height: 60px;
+  width: 60px;
+  background-repeat: no-repeat;
+  background-size: 80% auto;
+  z-index: 65;
+
+}
+
+.list .project-container .category {
+  position: absolute;
+  z-index: 50;
+  top: 675px;
+  left:50%;
+  font-size: 12pt;
+  line-height: 1.25;
+  font-weight: 500;
+}
+
+.list .project-container .year {
+  position: absolute;
+  z-index: 55;
+  top: 700px;
+  left:50%;
+  font-size: 12pt;
+  line-height: 1.25;
+  font-weight: 500;
+
+}
+
+.list .project-container .thumbnails{
+
+  box-shadow: inset 0 0 16px rgba(18, 18, 18, .05);
+  border-color: blue;
+  position: absolute;
   z-index: 15;
   height: 100%;
-  width: 100%;
-  padding-left: 85px;
-  top:0px;
-}
-.list .project-container:nth-child(even) .wrapper{
-  float: right;
-  padding-right: 85px;
-  padding-left: 0px;
-
-}
-
-.list .project-container .wrapper .thumbnails{
-  position: absolute;
-  z-index: 15;
-  height: 68vh;
   width: auto;
-  top:0px;
-  left: 2px;
+  top:80px;
+  left: 10%;
+  background-size: auto auto;
 }
 
-.list .project-container .wrapper .block{
+.list .project-container .bounding-box{
+  overflow: hidden;
   position: absolute;
-  top:20px;
-  left:0px;
-  height: 72vh;
-  z-index: 14;
-  width: 25vw;
+  background-color: white;
+  height: 100%;
+  width: calc(10% - 15px);
+  top:80px;
+  left: 0px;
+  z-index: 16;
+}
+
+.list .project-container span{
+  position: absolute;
+  top:80px;
+  left:calc(10% - 15px);
+  height: 100%;
+  z-index: 17;
+  width: 1px;
   background-color: blue;
-  /*background-repeat: no-repeat;
-  background-size: contain;
-  background-image: url('images/bluegrid.svg')*/
+}
+
+@media only screen and (max-width: 992px) {
+  .list .project-container .thumbnails{
+    height: 80%;
+    width: auto;
+  }
 }
 
 @media only screen and (min-width: 768px) {
 
-.list .project-container:nth-child(even) .title{
+
+.list .project-container:nth-child(even)  {
+  float: right;
   text-align: right;
-  padding-right: 85px;
+  padding-right: 10%;
+  padding-left: auto;
+}
+
+.list .project-container:nth-child(even) span{
+  right:calc(10% - 15px);
+  left:auto;
+}
+
+.list .project-container:nth-child(even) .arrow{
+  transform: rotate(-90deg);
+  left:auto;
+  right: 68%;
+}
+
+
+.list .project-container:nth-child(even) .title{
+
+  right: 50%;
+  left: auto;
 }
 .list .project-container:nth-child(even) .thumbnails{
-  right: 0px;
+  right: 10%;
   left: auto;
 }
-.list .project-container:nth-child(even) .block{
-  right: 0px;
+.list .project-container:nth-child(even) .year{
+  text-align: right;
   left: auto;
+  right: 50%;
 }
+.list .project-container:nth-child(even) .order{
+  text-align: right;
+
+}
+
 }
 
 #play{
+  grid-row-start: 3;
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100%;
 }
 

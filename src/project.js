@@ -1,6 +1,12 @@
 import React from 'react';
-import coaster from './images/thumbnails/01_coaster.JPG'
+import coasters from './images/thumbnails/coasters.JPG'
 import clock from './images/thumbnails/02_clock.JPG'
+import ggbl from './images/thumbnails/GGBL.jpg'
+import ember from './images/thumbnails/ember.JPG'
+import groovie from './images/thumbnails/groovie.png'
+import hoop from './images/thumbnails/HoopHaven.jpg'
+import pages from './images/thumbnails/Pages.jpg'
+import chair from './images/thumbnails/chair.jpg'
 
 
   var projects = [];
@@ -8,9 +14,9 @@ import clock from './images/thumbnails/02_clock.JPG'
                  Bio: "",
                  Url: "",
                  Year: "2019",
-                 Thumbnail: coaster,
+                 Thumbnail: coasters,
                  Archived: false,
-                 Category: ["graphic", "industrial"]
+                 Category: "graphic/industrial",
                };
 
   projects[1] = {Title: "PlayTime",
@@ -18,62 +24,62 @@ import clock from './images/thumbnails/02_clock.JPG'
                  Url: "",
                  Year: "2019",
                  Thumbnail: clock,
-                 Archived: true,
+                 Archived: false,
                  Category: ["graphic", "industrial"]
                };
 
-  projects[2] = {Title: "GGBL",
+  projects[3] = {Title: "GGBL",
                  Bio: "",
                  Url: "",
                  Year: "2019",
-                 Thumbnail: coaster,
+                 Thumbnail: ggbl,
                  Archived: false,
-                 Category: ["graphic"]
+                 Category: "graphic"
                };
 
-  projects[3] = {Title: "ember",
+  projects[2] = {Title: "ember",
                  Bio: "",
                  Url: "",
                  Year: "2019",
-                 Thumbnail: coaster,
+                 Thumbnail: ember,
                  Archived: false,
-                 Category: ["industrial"]
+                 Category: "industrial"
                 };
 
   projects[4] = {Title: "groovie",
                  Bio: "",
                  Url: "",
                  Year: "2019",
-                 Thumbnail: coaster,
+                 Thumbnail: groovie,
                  Archived: false,
                  Category: ["industrial"]
                 };
 
-  projects[5] = {Title: "Pages",
+  projects[6] = {Title: "Pages",
                  Bio: "",
                  Url: "",
                  Year: "2019",
-                 Thumbnail: coaster,
+                 Thumbnail: pages,
                  Archived: false,
-                 Category: ["industrial"]
+                 Category: "industrial"
                 };
 
-  projects[6] = {Title: "Hoop Haven",
+  projects[5] = {Title: "Hoop Haven",
                  Bio: "",
                  Url: "",
                  Year: "2019",
-                 Thumbnail: coaster,
+                 Thumbnail: hoop,
                  Archived: false,
-                 Category: ["industrial"]
+                 Category: "industrial"
                 };
 
   projects[7] = {Title: "Dagligdags Chair",
                  Bio: "",
                  Url: "",
                  Year: "2019",
-                 Thumbnail: coaster,
+                 Thumbnail: chair,
                  Archived: false,
-                 Category: ["industrial"]
+                 Category: "industrial"
                 };
 
 
