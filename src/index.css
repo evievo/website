@@ -8,12 +8,51 @@
 
 body {
   margin: 0px;
-
+  overflow: scroll;
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 :root{
-  --main-grey-color: rgba(26, 26, 27, 1);
+  --main-grey-color: rgba(10, 10, 11);
+}
+
+.load{
+  position: fixed;
+  -webkit-position: sticky;
+  opacity: 1;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100vh;
+  width: 100vw;
+  background-color: blue;
+  overflow: hidden;
+}
+
+.load img{
+  margin-right: 35%;
+  margin-left: 35%;
+  margin-top: 250px;
+  width: auto;
+  position: absolute;
+  height: auto;
+}
+
+.scroll-bar{
+
+  position: absolute;
+  right: -3.25px;
+  top: 0px;
+  background-color: blue;
+  width: 5px;
+  height: 8px;
+  z-index: 60;
+  position: fixed;
+  -webkit-position: sticky;
 }
 
 #navbar a {
@@ -21,18 +60,6 @@ body {
   color: inherit;
 
 }
-
-.overlay{
-  z-index: 999;
-  height: 100%;
-  width: 100%;
-  color: rgb(255, 250, 2);
-  opacity: 1;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-}
-
 
 #navbar a:visited { text-decoration: none;}
 #navbar a:hover { text-decoration: none;}
@@ -145,38 +172,26 @@ body {
   height: 100vh;
   width: 100%;
   position: relative;
-  background: rgb(8, 8, 9);
+  background: rgb(10, 10, 11);
   z-index: 1;
 
 }
 
 #homeimage{
-  margin-left: 25%;
-  margin-right: 25%;
-  margin-top: 15vh;
-  height: 50%;
-  width: auto;
+  display: block;
+  float :right;
+  bottom: 10%;
+  right: 10%;
+  height: 58%;
+  width: 48%;
   z-index: 20;
-  position: relative;
-  z-index: 2;
-  background-size: 100% auto;
-
-
-}
-
-/*#homeimage:before{
-  content: '';
   position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  opacity: .4;
+  z-index: 2;
+  background-size: auto 38vw;
   background-image: url('./images/me.jpg');
   background-repeat: no-repeat;
-  background-size: 100% auto;
 
-}*/
+}
 
 #home .scroll{
   width: 30vw;
@@ -247,7 +262,7 @@ body {
 .designer-statment p{
   position: absolute;
   top:auto;
-  width: 1000%;
+  width: 100%;
   left:0px;
   text-transform: uppercase;
   font-size: 5vh;
@@ -258,6 +273,7 @@ body {
   font-style: normal;
   letter-spacing: 3px;
   white-space: pre-line;
+  opacity: 0;
   animation: textAnim 20s infinite alternate;
 }
 
@@ -274,9 +290,9 @@ body {
 
 
 .intro{
-  top:30%;
-  left: 40%;
-  width: 55vw;
+  top:150px;
+  left: calc(10% - 15px);
+  width: 40%;
   height: 100%;
   position: absolute;
   padding-left: 20px;
@@ -287,32 +303,39 @@ body {
 
 .intro p{
   margin-left: 20px;
-  font-size: 38px;
+  font-size: 26pt;
   line-height: 1.25;
-  color: black;
-  font-family: 'acumin-pro-wide', sans-serif;
-  font-weight: 500;
+  color: white;
+  font-family: 'acumin-pro', sans-serif;
+  font-weight: 400;
   font-style: normal;
-  letter-spacing: 5px;
-  white-space: pre-line;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   margin-bottom: 3px;
+  white-space: pre-line;
   text-shadow: 1px 2px 20px rgba(20, 20, 25, .02)
 }
 
 .intro p::after{
-  content: " A creative in metro Detroit. A recent graduate from the Univeristy of Michigan. A motivated designer taking on new projects with exicment."
+  content: " a multi displinary designer. I do industrial, graphic, UI/UX and code. A recent grad form University of Michigan, looking to take on cool projects! \A Check ittt!"
 }
 
-.intro span:nth-of-type(1) {
-    width: 110%;
-    background: black;
-    display: block;
-    height: 1.5px;
-    margin-bottom: 1px
+.arrow-white{
+    transform: rotate(90deg);
+    position: relative;
+    margin-left: calc(10% + 15px);
+    margin-top: 540px;
+    height: 50px;
+    width: 50px;
+    background-repeat: no-repeat;
+    background-size: 80% auto;
+    z-index: 5;
+    opacity: 1;
 }
+
 
 .logo{
-  opacity: 1;
+
   margin-left: auto;
   margin-right: auto + 9%;
   margin-top: 20px;
@@ -322,8 +345,10 @@ body {
 }
 
 .logo img{
+  opacity: 0;
+  z-index: 101;
   position: absolute;
-  height:70%;
+  width:70%;
   top:30px;
   left: 10%;
 }
@@ -341,7 +366,7 @@ body {
 
 .about-title{
   position: absolute;
-  z-index: 50;
+  z-index: 1;
   top:-90px;
   margin-left: 88px;
   font-size: 110px;
@@ -360,26 +385,31 @@ body {
   position: relative;
   width: 100vw;
   height: auto;
+  display: grid;
+  margin-bottom: 150px;
 }
 
 .work-title{
   position: absolute;
   z-index: 51;
-  top:-90px;
+  top:20px;
   margin-left: 88px;
-  font-size: 110px;
+  font-size: 190pt;
   line-height: 1.25;
   color: rgba(0, 0, 0, 0);
   font-family: 'acumin-pro-wide', sans-serif;
   font-weight: 700;
   font-style: normal;
   letter-spacing: 0px;
-  -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: blue;
+  -webkit-text-stroke-width: 2.5px;
+  -webkit-text-stroke-color: black;
 }
 .list{
+  margin-top: 180px;
+  grid-row-start: 1;
+  position: relative;
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .project-container{
@@ -402,7 +432,7 @@ body {
   position: absolute;
   z-index: 50;
   top:1%;
-  left:50%;
+  left:42%;
   font-size: 60pt;
   line-height: 1.25;
   text-transform: uppercase;
@@ -411,29 +441,25 @@ body {
 
 }
 
-/*.list .project-container .order {
+.list .project-container .order {
   position: absolute;
   z-index: 50;
-  top: 615px;
-  left:calc(50% - 100px);
-  font-size: 60pt;
+  top: 675px;
+  left:10%;
+  font-size: 12pt;
   line-height: 1.25;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 1);
-  -webkit-text-stroke-width: 1pt;
-  -webkit-text-stroke-color: black;
-}*/
+}
 
 .list .project-container .arrow{
   position: absolute;
-  top: 115%;
+  top: calc(115% - 80px);
   left: calc(10% + 835px);
   height: 60px;
   width: 60px;
   background-repeat: no-repeat;
   background-size: 80% auto;
-  z-index: 65;
+  z-index: 5;
+  opacity: 0;
 
 }
 
@@ -456,6 +482,7 @@ body {
   line-height: 1.25;
   font-weight: 500;
 
+
 }
 
 .list .project-container .thumbnails{
@@ -464,7 +491,7 @@ body {
   border-color: blue;
   position: absolute;
   z-index: 15;
-  height: 100%;
+  height: 90%;
   width: auto;
   top:80px;
   left: 10%;
@@ -475,7 +502,7 @@ body {
   overflow: hidden;
   position: absolute;
   background-color: white;
-  height: 100%;
+  height: 90%;
   width: calc(10% - 15px);
   top:80px;
   left: 0px;
@@ -486,7 +513,7 @@ body {
   position: absolute;
   top:80px;
   left:calc(10% - 15px);
-  height: 100%;
+  height: 90%;
   z-index: 17;
   width: 1px;
   background-color: blue;
@@ -502,45 +529,96 @@ body {
 @media only screen and (min-width: 768px) {
 
 
-.list .project-container:nth-child(even)  {
-  float: right;
-  text-align: right;
-  padding-right: 10%;
-  padding-left: auto;
+  .list .project-container:nth-child(even)  {
+    float: right;
+    text-align: right;
+    padding-right: 10%;
+    padding-left: auto;
+  }
+
+  .list .project-container:nth-child(even) span{
+    right:calc(10% - 15px);
+    left:auto;
+  }
+
+  .list .project-container:nth-child(even) .arrow{
+    transform: rotate(-90deg);
+    left:auto;
+    right: 68%;
+  }
+
+
+  .list .project-container:nth-child(even) .title{
+
+    right: 50%;
+    left: auto;
+  }
+  .list .project-container:nth-child(even) .thumbnails{
+    right: 10%;
+    left: auto;
+  }
+  .list .project-container:nth-child(even) .year{
+    text-align: right;
+    left: auto;
+    right: 50%;
+  }
+  .list .project-container:nth-child(even) .order{
+    text-align: right;
+
+  }
 }
 
-.list .project-container:nth-child(even) span{
-  right:calc(10% - 15px);
-  left:auto;
+.footer{
+  grid-row-start: 2;
+  position: relative;
+  height: 20vh;
+  width:100vw;
 }
 
-.list .project-container:nth-child(even) .arrow{
-  transform: rotate(-90deg);
-  left:auto;
-  right: 68%;
+.footer span{
+  width: 75%;
+  height: 1.5px;
 }
 
-
-.list .project-container:nth-child(even) .title{
-
-  right: 50%;
-  left: auto;
-}
-.list .project-container:nth-child(even) .thumbnails{
-  right: 10%;
-  left: auto;
-}
-.list .project-container:nth-child(even) .year{
-  text-align: right;
-  left: auto;
-  right: 50%;
-}
-.list .project-container:nth-child(even) .order{
-  text-align: right;
-
+.footer .archive-btn{
+  position: absolute;
+  left: 10%;
+  height:150px;
+  width: 150px;
+  background-repeat: no-repeat;
+  z-index: 100;
+  animation: archiveAim 30s infinite;
 }
 
+.archive-wrap{
+  position: absolute;
+  top:-30px;
+  left: 5%;
+  height:200px;
+  width: 200px;
+  z-index: 1;
 }
+ .archive-wrap .archive-btn{
+  position: relative;
+  margin: auto;
+  height:80%;
+  width: 80%;
+
+  background-repeat: no-repeat;
+
+}
+.archive-wrap .blob{
+  border-radius: 50%;
+  background-color: blue;
+  height:20px;
+  width: 20px;
+  opacity: 0;
+  position:relative;
+  margin-right:auto;
+  margin-left: auto;
+
+}
+
 
 #play{
   grid-row-start: 3;
@@ -572,4 +650,26 @@ body {
     top:0px;
     left: 2px;
   }
+}
+
+.archive-page{
+  -webkit-position: sticky;
+  position: fixed;
+  overflow: scroll;
+  top: 0px;
+  left: 0px;
+  z-index: 200;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+
+}
+
+.archive-page .x{
+  position: absolute;
+  background-color: black;
+  height: 20px;
+  width: 20px;
+  top: 40px;
+  right: 40px;
 }

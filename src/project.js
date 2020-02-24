@@ -1,4 +1,4 @@
-import React from 'react';
+
 import coasters from './images/thumbnails/coasters.JPG'
 import clock from './images/thumbnails/02_clock.JPG'
 import ggbl from './images/thumbnails/GGBL.jpg'

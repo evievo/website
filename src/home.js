@@ -6,13 +6,16 @@ import Main from './main.js';
 class Home extends React.Component {
 render() {
   return (
+
     <div>
       <Helmet>
         <title>Evan Vollick-Offer x Design</title>
         <meta name="description" content="Evan Vollick-Offer's Portfolio" />
       </Helmet>
+
       <Main />
     </div>
+
   );
 }
 }
