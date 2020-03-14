@@ -5,13 +5,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 //IMPORTS:
 import React from 'react';
-import { Power1, Power3, Bounce, Back, TimelineLite, TweenMax, TimelineMax } from "gsap";
+import {gsap, Power1, Power3, Bounce, Back, TimelineLite, TweenMax, TimelineMax} from "gsap";
+import {  ScrollToPlugin } from 'gsap/dist/ScrollToPlugin.js';
 import * as ScrollMagic from "scrollmagic";
 import Projects from "./project.js"
 import Assets from "./assets.js"
 import Archive from "./archive.js"
+import ProjectPage from './Projects.js';
+import Load from './load.js'
 import { ScrollMagicPluginGsap } from "scrollmagic-plugin-gsap";
-import {BrowserRouter, withRouter, Link, Route} from "react-router-dom";
+import {BrowserRouter, withRouter, Link, Route, Switch} from "react-router-dom";
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -26,6 +29,16 @@ var cursor_stop = false;
 var archiveTl = new TimelineMax({repeat:-1});
 var logoTl = new TimelineMax({repeat:-1});
 var loadTl = new TimelineMax();
+var ham = new TimelineMax();
+var hamToggle = {timeline: new TimelineMax(), toggled: false};
+var introMoved = false;
+gsap.registerPlugin( ScrollToPlugin);
+
+
+
+
+
+var scroll = 0;
 
 
 
@@ -45,14 +58,15 @@ class Main extends React.Component {
       width: w,
       height: h,
       color: "",
+      showProcess: false,
+      showSkills: false,
     };
+
+    this.skillsClick = this.skillsClick.bind(this);
+    this.processClick = this.processClick.bind(this);
   }
 
-  async componentDidMount(){
-    try {
-
-    ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
-
+  componentWillMount(){
     //init DATA:
       let init_projects = [];
       let count = 0;
@@ -63,8 +77,6 @@ class Main extends React.Component {
         }
       }
 
-
-      //var c = new ScrollMagic.Controller()
       let w = window.innerWidth ||
               document.documentElement.clientWidth ||
               document.body.clientWidth;
@@ -79,13 +91,37 @@ class Main extends React.Component {
         width: w,
         height: h,
         color: "white",
-      },() => {this.workaim()});
+        showSkills: false,
+        showProcess: false,
+      });
+  }
+
+  async componentDidMount(){
+    try {
+
+    ScrollMagicPluginGsap(ScrollMagic, TweenMax, TimelineMax);
 
     //mouse anim:
+    this.blurMove();
     this.mouseanim();
-    archiveTl.to(this.archive, {rotation: 360, duration: 80});
+    this.toppage();
+    this.navAnim();
+    window.history.replaceState(null, null, '/');
 
-    logoTl.set(this.logo_outline, {opacity:1});
+    var t = TweenMax.to(".move-text", 20, {x:-800, repeat:-1});
+
+
+
+
+
+    archiveTl.to(this.archive, {rotation: 360, duration: 80});
+    ham.pause();
+    ham.to(this.hamOne, .2, {x: -3});
+    ham.to(this.hamTwo, .2, {x: 3}, "-=.2");
+    hamToggle.timeline.pause();
+    hamToggle.timeline.to(this.navList, .3, {x: 30, opacity: 0, ease: Power1.easeOut});
+
+  /*  logoTl.set(this.logo_outline, {opacity:1});
     logoTl.set(this.logo_filled, {opacity:1});
     logoTl.to(this.logo_filled, .6, {opacity:1});
     logoTl.set(this.logo_filled, {opacity:0});
@@ -94,7 +130,7 @@ class Main extends React.Component {
     //logoTl.set(this.logo_filled, {opacity:0});
     logoTl.pause();
 
-    loadTl.pause();
+
 
     loadTl.set(this.logo_outline_load, {opacity:1});
     loadTl.set(this.logo_filled_load, {opacity:1});
@@ -107,22 +143,31 @@ class Main extends React.Component {
     loadTl.to(this.logo_filled_load, .6, {opacity:1});
     loadTl.set(this.logo_filled_load, {opacity:0});
     loadTl.to(this.logo_filled_load, .6, {opacity:0});
-    loadTl.set(this.logo_outline_load, {opacity:0});
-    loadTl.to(this.load, 1.5, {x:this.state.width, ease: Power3.easeOut});
+    loadTl.set(this.logo_outline_load, {opacity:0});*/
+
     //loadTl.to(this.load, 3, {opacity:0});
 
     TweenMax.set(this.archpage, {y:-800, ease: Power1.easeOut});
 
-    window.addEventListener('hashchange', (e) => {
-     alert("change");
-     //if (window.location.href.indexOf("franky") != -1)
-   });
 
-    window.addEventListener('load', (e) => {
+    /*window.addEventListener('load', (e) => {
 
-      loadTl.resume();
+      loadTl.to(this.load, 1.5, {x:this.state.width, ease: Power3.easeOut}).then(() => {
+      loadTl.pause()});
 
-    });
+    });*/
+
+    var links = document.getElementsByTagName("a");
+    for(let i = 0; i < links.length; i++){
+      links[i].addEventListener('mouseenter', (e) =>{
+        this.mouseHover();
+      });
+      links[i].addEventListener('mouseleave', (e) =>{
+        this.mouseUnhover();
+      });
+    }
+
+
 
     window.addEventListener('resize', (e) => {
       let w = window.innerWidth ||
@@ -131,54 +176,20 @@ class Main extends React.Component {
       let h = window.innerHeight;
 
       this.setState({width: w, height: h});
-      //clearTimeout(timer);
-      //timer = setTimeout(this.updateaim(), 200);
+
     });
 
+    var waiting = false;
+
     window.addEventListener('scroll', (e) => {
-      this.updatenav();
+
       this.scrolleffect(this.getup());
       this.updatescroll();
 
-    })
+      })
 
 
-    this.homeimage.addEventListener("mouseover", () =>{
-      clearTimeout(timer);
-      timer = setTimeout(this.logoaim(true), 400);
-      this.logoaim(true);
 
-    })
-
-    this.homeimage.addEventListener("mouseleave", () =>{
-      //clearTimeout(timer);
-      //timer = setTimeout(this.logoaim(false), 200);
-      this.logoaim(false);
-    })
-
-
-    //navBar anim:
-      const trigger = [...document.getElementsByClassName("nav-bounds")];
-
-      trigger.forEach.call(trigger, el => {
-        el.addEventListener("mouseover", e => {
-          const selcted = el.getElementsByClassName("nav-option")[0];
-
-          TweenMax.to(selcted, 0.25, {transform:"rotate(-15deg)",color: "blue",ease: Power1.easeOut});
-        });
-      });
-
-      trigger.forEach.call(trigger, el => {
-        el.addEventListener("mouseleave", e => {
-          const selcted = el.getElementsByClassName("nav-option")[0];
-
-          TweenMax.to(selcted, 0.7, {
-            transform: "rotate(0deg)",
-            color: this.state.color,
-            ease: Power1.easeOut
-          });
-        });
-      });
       /////////////////////////////////////////////
       /////////////////////////////////////////////
 
@@ -187,10 +198,6 @@ class Main extends React.Component {
 
 
       //intial animations:
-      var start = new TimelineLite();
-      start
-      .from(document.getElementsByClassName('categories'), {opacity: 0, duration: 2, y: -100, ease: Power3.easeIn})
-      .from(document.getElementById('navbar'), {opacity: 0, duration: .8, y: -50});
 
 
 
@@ -219,21 +226,31 @@ class Main extends React.Component {
 
   scrolleffect(up){
     let skew = -2;
-    if(up) {skew = 2;}
-    const trigger = [...document.getElementsByClassName("list")];
+    let move = 20;
+    let smallMove = 10;
+    if(up) {skew *= -1; move *= -1; smallMove *=-1}
 
-    trigger.forEach.call(trigger, el => {
-      for(let i =0; i<this.state.projects.length; i++){
-        const selcted = el.getElementsByClassName("project-container")[i];
-        TweenMax.to(selcted, 0.1, {skewY:skew, ease: Power1.easeOut});
+    for(let i =0; i<this.state.projects.length; i++){
+      TweenMax.to(this['imagebox_'+ i], 0.5, {y: move, skewY:skew});
+    }
+    for(let i =0; i<this.state.projects.length; i++){
+      TweenMax.to(this['imagebox_'+ i], 1.2, {duration: 2, y: 0, skewY:0, ease: Power3.easeOut});
+    }
+
+    var text = [this.about.getElementsByTagName("p"),document.getElementsByTagName("h3")];
+    console.log(text);
+    for(let i = 0; i < text.length; i++){
+
+      for(let j = 0; j < text[i].length; j++){
+        TweenMax.to(text[i][j], 0.5, {y: smallMove});
       }
-    });
-    trigger.forEach.call(trigger, el => {
-      for(let i =0; i<this.state.projects.length; i++){
-        const selcted = el.getElementsByClassName("project-container")[i];
-        TweenMax.to(selcted, 1, {duration: 2, skewY:0, ease: Bounce.easeOut});
+      for(let j = 0; j < text[i].length; j++){
+        TweenMax.to(text[i][j], 1.0, {y: 0, skewY:0, ease: Power3.easeOut});
       }
-    });
+    }
+
+
+
   }
 
   logoaim(enter){
@@ -249,132 +266,135 @@ class Main extends React.Component {
     }
   }
 
-  updatenav(){
-    const trigger = [...document.getElementsByClassName("nav-bounds")];
-    var home = this.home.getBoundingClientRect();
-    var work = this.projects.offsetTop;
-    var home_bottom = (home.top + this.home.clientHeight);
 
-    if (window.pageYOffset > (work-20)){
-      //TweenMax.to(this.navbar, .5, {color: "black"});
-      this.state.color = "black";
-      trigger.forEach.call(trigger, el => {
 
-          const selcted = el.getElementsByClassName("nav-option")[0];
 
-          TweenMax.to(selcted, 0.5, {
-            color: this.state.color,
-            ease: Power1.easeOut
-          });
+  toppage(){
+    const controller = new ScrollMagic.Controller();
+  //  var sections = [this.home, this.list, this.about]
+    var intro = this.intro;
+    var timelineIntro = new TimelineMax();
 
-      });
-    }
-    //else if (window.pageYOffset < (home_bottom - 50) && window.pageYOffset > (home_bottom + 50)){
-    else{
-      TweenMax.to(this.navbar, .5, {color: "white"});
-      this.state.color = "white";
-      trigger.forEach.call(trigger, el => {
-          const selcted = el.getElementsByClassName("nav-option")[0];
-          TweenMax.to(selcted, 0.5, {
-            color: this.state.color,
-            ease: Power1.easeOut
-          });
+    timelineIntro.to(".intro-2020", 5,{ x: -1000, opacity:.5,ease: Power1.easeInOut});
+    timelineIntro.to(".intro-portfolio", 5,{ x: 1500, opacity:.5,ease: Power1.easeInOut},"-=5");
+    timelineIntro.to(".scroll-icon", 8, {rotation: 360, ease: Power1.easeInOut}, "-=8");
+    timelineIntro.to(".scroll-icon", 8, { y: -1000, opacity:.5, ease: Power1.easeInOut});
+    timelineIntro.to(".name", 5, { y: -300, opacity:.5, ease: Power1.easeInOut}, "-=4");
 
-      });
 
-    }
-  }
+      var first = new ScrollMagic.Scene({
+        triggerElement: this.projects,
+        duration: 800,
 
-  updateaim(){
-    let w = window.innerWidth ||
-            document.documentElement.clientWidth ||
-            document.body.clientWidth;
+      })
+        .setTween(".intro-blur", { x: 1500, ease: Power1.ease})
+        .addTo(controller);
 
-    this.setState({width: w}, () => {this.workaim(true)});
-    console.log(this.state.width);
-  }
+        var second = new ScrollMagic.Scene({
+          triggerElement: this.projects,
+          duration: 700,
 
-  workaim(updating){
-    //  var proj_t2 = new TimelineMax({onUpdate:update});
-    //var c = new ScrollMagic.Controller();
-    //this.setState({ controller: new ScrollMagic.Controller()});
-
-    var proj_t = [];
-    for(let i = 0; i < this.state.projects.length; i ++){
-      //console.log(this.state.width);
-      proj_t[i] = new TimelineMax(/*{onUpdate:update}*/);
-        if((this.state.width < 768) || (i % 2 === 0)){
-          proj_t[i].from(this['title_' + i], .2,{x: 90, opacity:0, ease: Back.easeOut});
-          proj_t[i].from(this['thumbnail_' + i], .4,{x: -200,ease: Back.easeOut});
-          proj_t[i].from(this['block_' + i], 2,{x: -20,ease: Back.easeOut});
-        }
-        else{
-          proj_t[i].from(this['title_' + i], .2,{x: -90, opacity:0, ease: Back.easeOut});
-          proj_t[i].from(this['thumbnail_' + i], .2,{x: 200,ease: Power1.easeOut});
-          proj_t[i].from(this['block_' + i], 2,{x: 20,ease: Back.easeOut});
-        }
-        if(!updating){
-          this.state.scene[i] = new ScrollMagic.Scene({
-              triggerElement: this['proj_' + i],
-              triggerHook: "onCenter",
-            })
-            .setTween(proj_t[i])
-            //.addIndicators({name: "1 (duration: 20)"})
-            .addTo(this.state.controller);
-        }
-        else{
-          this.state.scene[i].destroy(true);
-          this.state.scene[i] = new ScrollMagic.Scene({
-              triggerElement: this['proj_' + i],
-              triggerHook: "onCenter",
-            })
-            .setTween(proj_t[i])
-            //.addIndicators({name: "1 (duration: 20)"})
-            .addTo(this.state.controller);
-          //this.state.scene[i].refresh();
-          this.state.scene[i].update();
-        }
-      }
-
-    function update() {
-      proj_t.progress();
-      //console.log(proj_t.progress());
-    }
+        })
+          .setTween(timelineIntro)
+          .addTo(controller);
 
   }
+
+  navAnim(){
+    const controller = new ScrollMagic.Controller();
+  //  var sections = [this.home, this.list, this.about]
+
+    var timelineNav = new TimelineMax();
+    timelineNav.to(".work-toggle", 2, {y:20, opacity: 0})
+    timelineNav.set(".work-toggle", {opacity: 0, css:{fontFamily:"var(--type-fam-serif)"}})
+    timelineNav.to(".work-toggle", 2, {y:0, opacity: 1})
+
+    var timelineNav2 = new TimelineMax();
+    timelineNav2.to(".work-toggle", 2, {y:20, opacity: 0})
+    timelineNav2.set(".work-toggle", {opacity: 0, css:{fontFamily:"var(--type-fam-reg)"}})
+    timelineNav2.to(".work-toggle", 2, {y:0, opacity: 1})
+    timelineNav2.to(".about-toggle", 2, {y:20, opacity: 0})
+    timelineNav2.set(".about-toggle", {opacity: 0, css:{fontFamily:"var(--type-fam-serif)"}})
+    timelineNav2.to(".about-toggle", 2, {y:0, opacity: 1})
+
+
+      var work = new ScrollMagic.Scene({
+        triggerElement: this.projects,
+        duration: 600,
+        offset: 250
+      })
+        .setTween(timelineNav)
+        .addTo(controller);
+
+        var about = new ScrollMagic.Scene({
+          triggerElement: this.about,
+          duration: 600,
+          offset: 100
+        })
+          .setTween(timelineNav2)
+          .addTo(controller);
+  }
+
+
 
 
 
   mouseanim() {
+
     document.addEventListener("mousemove", (e) => {
       if(!cursor_stop){
-      TweenMax.to(this.cursor, 0.6, { css: { left: e.clientX, top: (e.clientY+window.pageYOffset), opacity: 0.3 } });
-      TweenMax.to(this.cursor, 0.2, { css: {opacity: 1 } });
-    }
+
+        TweenMax.to(this.cursor, 0.6, { css: { left: e.clientX, top: (e.clientY+window.pageYOffset)} });
+      }
+    });
+    window.addEventListener('mousewheel', (e) => {
+      TweenMax.to(this.cursor, 0.3, { css: { left: e.clientX, top: (e.clientY+window.pageYOffset)} });
     });
 
 
-  }//end
+  }
 
   mapscreen(pos, size){
     let half = size/2;
     return pos-half;
   }
 
-  projectHover(i){
+  blurMove(){
 
-    this['thumbnail_' + i].addEventListener("mousemove", (e) => {
-    let x = (this.mapscreen(e.clientX, window.innerWidth)*.01);
-    let y = (this.mapscreen(e.clientY, window.innerHeight)*.018);
-    TweenMax.to(this['thumbnail_' + i], 0.4,{x: x,y:y, scale: 1.01,  ease: Power1.easeOut});
-    TweenMax.to(this['arrow_' + i], 0.4,{y: 80, opacity:1,  ease: Bounce.easeOut});
+      this.home.addEventListener("mousemove", (e) => {
+        let x = (this.mapscreen(e.clientX, window.innerWidth)*.02);
+        let y = (this.mapscreen(e.clientY, window.innerHeight)*.028);
+        TweenMax.to(".intro-blur", 0.4,{x: x,y:y, ease: Power1.easeOut});
+      });
+
+  }
+
+  projectHover(i){
+    this.mouseHover();
+
+    this['imagebox_' + i].addEventListener("mousemove", (e) => {
+      let details = 50;
+      let x = (this.mapscreen(e.clientX, window.innerWidth)*.01);
+      let y = (this.mapscreen(e.clientY, window.innerHeight)*.018);
+      TweenMax.to(this['thumbnail_' + i], 0.4,{x: x,y:y, scale: 1.05,  ease: Power1.easeOut});
+      TweenMax.to(this['title_' + i], 0.4,{ opacity:1});
+      if(i % 2 === 0){
+        details *= -1;
+      }
+      TweenMax.to(this['year_' + i], .6, {y:details, opacity: 1});
+      TweenMax.to(this['category_' + i], .6, {y:details, opacity:1});
+
+
   });
 
   }
 
   projectLeave(i){
+    this.mouseUnhover();
+    TweenMax.to(this['year_' + i], .6, {y:0, opacity:0});
+    TweenMax.to(this['category_' + i], .6, {y:0, opacity:0});
     TweenMax.to(this['thumbnail_' + i], 0.6,{x: 0,y:0, scale: 1.0, ease: Power3.easeOut})
-    TweenMax.to(this['arrow_' + i], 0.4, {y: 0, opacity:0, ease: Bounce.easeOut});
+  //  TweenMax.to(this['title_' + i], 0.4,{ opacity:0});
   }
 
   archiveEnter(){
@@ -397,22 +417,139 @@ class Main extends React.Component {
   }
 
   archiveClick(){
-  //  window.history.pushState('', '', '/archive');
-
-
     TweenMax.to(this.archive, .2, { scale:2, ease: Power1.easeOut});
     TweenMax.to(this.archpage, 1, {y:0, ease: Power1.easeOut})
     TweenMax.from(this.archpage, 1, {y: - 800, ease: Power1.easeOut})
-
   }
 
 
-  archHover(i){
+  goToProj(i, name){
+    loadTl.reverse().then(() => {window.location= "/projects/" + (i + 1) + ":" + name;})
+  }
+
+
+
+  skillsClick(){
+    if(this.state.showSkills === false){
+      this.setState({showSkills:true});
+      TweenMax.set(".skillslist", {y:0, opacity:1});
+      TweenMax.from(".skillslist", .5, {y:-50, opacity:0,ease:Power3.easeIn});
+
+    }
+    else{
+        TweenMax.to(".skillslist", .7, {y:-50, opacity:0,ease:Power3.easeOut})
+        .then(()=>this.setState({showSkills:false}));
+
+
+    }
 
   }
-  archLeave(i){
+  skillsReturn(){
+
+    return(
+      <div>
+        <div className = "skillslist">
+          <ul><span></span>Digital Design<p>From web design (like the is site), typography, branding, posters, Adobe Creative Suite</p></ul>
+
+          <ul><span></span>Industual<p>Have a passion for physical creations. Sketching, prototyping, devolpment and testing</p></ul>
+
+          <ul><span></span>UI/UX<p>Weather its physical or Digitial, I do case studies, stoyboards, user testing and craft experiences</p></ul>
+
+          <ul><span></span>Programming<p>Trained in C/C++, but also love python, JS, HTML, CSS and know other things like React (what i used for this site), SQL and Ardino harware...always learning</p></ul>
+          </div>
+      </div>
+    );
+  }
+
+  processClick(){
+    if(this.state.showProcess === false){
+      this.setState({showProcess: true});
+      TweenMax.set(".processlist", {y:0, opacity:1});
+      TweenMax.from(".processlist", .5, {y:-50, opacity:0,ease:Power3.easeIn});
+    }
+    else{
+
+      TweenMax.to(".processlist", .7, {y:-50, opacity:0,ease:Power3.easeOut})
+      .then(()=>this.setState({showProcess: false}));
+    }
+  }
+  processReturn(){
+    return(
+      <div>
+        <ul><span></span>Research<p>From web design (like the is site), typography, branding, posters, Adobe Creative Suite</p></ul>
+
+        <ul><span></span>Ideation/Prototyping<p>Have a passion for physical creations. Sketching, prototyping, devolpment and testing</p></ul>
+
+        <ul><span></span>Devolpment Fun<p>Weather its physical or Digitial, I do case studies, stoyboards, user testing and craft experiences</p></ul>
+
+        <ul><span></span>Test! Test! Test!<p> in C/C++, but also love python, JS, HTML, CSS and know other things like React (what i used for this site), SQL and Ardino harware...always learning</p></ul>
+
+        <ul><span></span>Final Tweakage<p> in C/C++, but also love python, JS, HTML, CSS and know other things like React (what i used for this site), SQL and Ardino harware...always learning</p></ul>
+
+      </div>
+    );
+  }
+
+  listHover(selcted){
+
+    TweenMax.to(selcted, .5, {x: -30, ease: Power1.easeIn});
+    this.mouseHover();
+  }
+
+  listLeave(selcted){
+
+    TweenMax.to(selcted, .8, {x: 0, ease: Power1.easeIn});
+    this.mouseUnhover();
 
   }
+
+  hamHover(){
+    this.mouseHover();
+    ham.play();
+
+  }
+
+  hamLeave(){
+    this.mouseUnhover();
+    ham.reverse();
+  }
+
+  hamClick(){
+    if (!hamToggle.toggled){
+        hamToggle.toggled = true;
+        hamToggle.timeline.play();
+    }
+    else{
+      hamToggle.toggled = false;
+      hamToggle.timeline.reverse();
+    }
+  }
+
+  mouseHover(){
+    TweenMax.to(this.cursor, .5, {scale: 3, opacity:.25, ease: Power1.easeIn});
+  }
+
+  mouseUnhover(){
+      TweenMax.to(this.cursor, .5, {scale: 1, opacity: 1, ease: Power1.easeOut});
+  }
+
+  topEnter(){
+    this.mouseHover();
+    TweenMax.to(".top-button", .5, {rotation:360});
+  }
+  topLeave(){
+    this.mouseUnhover();
+    TweenMax.to(".top-button", .5, {rotation:0});
+  }
+  scrollTo(section){
+    let offset = -400;
+    if (section === this.home){offset = 0;}
+    TweenMax.to(window, 2, {scrollTo: {y:section, offsetY: offset}, ease: Power3.easeInOut});
+  }
+
+
+
+
 
 
 
@@ -427,92 +564,83 @@ class Main extends React.Component {
       <div>
          <div id="website" ref={ website => this.website = website }>
 
-           <div className = "load" ref ={ load => this.load = load }>
+
+           {/*<div className = "load" ref ={ load => this.load = load }>
              <img src = {Assets["Logo_outlines"]} alt = "logo outline load" ref={ logo_outline_load => this.logo_outline_load = logo_outline_load}/>
              <img src = {Assets["Logo_filled"]} alt = "logo filled load" ref={ logo_filled_load => this.logo_filled_load = logo_filled_load}/>
-           </div>
+           </div>*/}
 
             <div className="cursor" ref={ cursor => this.cursor = cursor }></div>
             <span className="scroll-bar" ref = {scroll => this.scroll = scroll}></span>
 
 
             <div id="navbar" ref={ navbar => this.navbar = navbar }>
+
+              <div className = "border-top"></div>
+              <div className = "viewport"></div>
+
               <div className="mainNav">
-                <div className = "nav-bounds">
-                  <div className = "nav-option">
-                    <a href = "/">evan vollick offer</a>
-                  </div>
-                </div>
+                <a href = "/">
+                  <img src = {Assets["Logo"]} alt = "logo nav" ref={ logo_nav => this.logo_nav = logo_nav}/>
+                  <p>evan vollick offer</p>
+                </a>
               </div>
-              <div className="navNav">
 
-                  <div className = "nav-bounds"><div className = "nav-option">
-                    <a href="#projects">work</a>
-                  </div></div>
-                  <div className = "nav-bounds"><div className = "nav-option">
-                    <a href = "#play">play</a>
-                  </div></div>
-                  <div className = "nav-bounds"><div className = "nav-option">
-                    <a href = "#about">about</a>
-                  </div></div>
+              <div className="navNav" ref = {navList => this.navList = navList}>
+                  <div className = "circle"></div>
+                  <li className = "work-toggle"><a onClick ={()=>this.scrollTo(this.projects)}>work</a></li>
+                  <li className = "about-toggle"><a onClick ={()=>this.scrollTo(this.about)}>about</a></li>
 
+              </div>
+              <div className="hamNav"
+                   onClick={()=>this.hamClick()}
+                   onMouseEnter={()=>this.hamHover()}
+                   onMouseLeave = {() => this.hamLeave()}>
+                      <span className = "line-one" ref = {hamOne=>this.hamOne=hamOne}></span>
+                      <span className="line-two" ref = {hamTwo=>this.hamTwo=hamTwo}></span>
               </div>
             </div>
 
 
+            <div id ="fixed">
 
+              <div className ="name">
+                <h1 ref = {headerHome => this.headerHome = headerHome}>
+                  <p className = "evan">Evan Vollick Offer</p>
+                </h1>
+              </div>
+
+              <img className = "scroll-icon" src={Assets['Scroll']} alt="Scroll_ICON" />
+              <img className= "intro-blur" src = {Assets['Blur']} alt = "blurrr"/>
+
+              <div className = "intro" ref= {intro => this.intro = intro}>
+                <p className = "intro-2020">2020 Temporary <br></br><br></br>2020 Temporary <br></br>2020 Temporary<span></span></p>
+                <p className = "intro-portfolio">Portfolio</p>
+
+
+              </div>
+
+            </div>
 
             <div id="page" ref={ page => this.page = page }>
 
+
               <div id="home" ref={ home => this.home = home }>
-
-                <div id = "homeimage" ref={ homeimage => this.homeimage = homeimage}>
-                  <div className="logo" ref = {logo => this.logo = logo}>
-                    <img src = {Assets["Logo_outlines"]} alt = "logo outline" ref={ logo_outline => this.logo_outline = logo_outline}/>
-                    <img src = {Assets["Logo_filled"]} alt = "logo filled" ref={ logo_filled => this.logo_filled = logo_filled}/>
+                {/*<div className = "start-container" ref= {test => this.test = test}>
+                  <p className = "check-it">Selected Works</p>
+                  <div className="arrow-white"
+                       ref = {arrow_white => this.arrow_white = arrow_white}
+                       style={{backgroundImage: "url(" + Assets['Arrow_white'] + ")"}}>
                   </div>
-                </div>
-
-                <div className = "intro">
-
-                    <p>
-                      Hi, i'm Evan!
-                    </p>
-                </div>
-                <div className="arrow-white"
-                     ref = {arrow_white => this.arrow_white = arrow_white}
-                     style={{backgroundImage: "url(" + Assets['Arrow_white'] + ")"}}></div>
-                <div className = "designer-statment">
-                   <p>
-                    MULTI disciplinary DESIGNER - MULTI disciplinary DESIGNER - MULTI disciplinary DESIGNER -
-                    </p>
-                </div>
+                </div>*/}
               </div>
 
-
               <div id="projects" ref={ projects => this.projects = projects }>
-                <div className = "work-title">
+
+                <div className = "project-header">
                   <span></span>
+                    <h3>Selected Works</h3>
                 </div>
-
-
-                <Link to= "/archive"> <div className = "archive-wrap"
-                    src = {archivebox => this.archivebox = archivebox}
-                    onMouseEnter={()=>this.archiveEnter()}
-                    onMouseLeave={()=>this.archiveLeave()}
-                    onClick ={()=>this.archiveClick()}>
-
-
-                  <div className = "archive-btn"
-                       ref ={archive => this.archive = archive}
-                       style = {{backgroundImage: 'url(' + Assets['Archive'] + ')'}}>
-                  </div>
-
-
-
-                  <div className = "blob" src = {blob => this.blob = blob}></div>
-                </div></Link>
-
 
                 <div className = "list" ref = { list => this.list = list}>
                   { Object.keys(this.state.projects).map((item, i) => {
@@ -520,72 +648,141 @@ class Main extends React.Component {
                       <div
                       className = "project-container"
                       key = {'proj_' + i}
-                      ref = { proj => this['proj_' + i] = proj }
-                      onMouseEnter={()=> this.projectHover(i)}
-                      onMouseLeave={()=> this.projectLeave(i)}>
-                        <div className = "title" ref = {title=>this['title_' + i]=title}>{ this.state.projects[i]['Title'] }</div>
-                          <span></span>
-                          <div className= "order" ref = {order=>this['order_' + i]=order}>0{i+1}</div>
-                          <div className= "year" ref = {year=>this['year_' + i]=year}>{this.state.projects[i]['Year']}</div>
-                          <div className= "category" ref = {category=>this['category_' + i]=category}>{this.state.projects[i]['Category']}</div>
+                      ref = { proj => this['proj_' + i] = proj }>
 
-                          <div className="arrow"
-                               ref = {arrow => this['arrow_' + i] = arrow}
-                               style={{backgroundImage: "url(" + Assets['Arrow_right'] + ")"}}></div>
+                        <div className = "text-box" ref = {text_box =>this['textbox_' + i] = text_box}>
+                            {/*<span></span>*/}
+                            <div className = "title" ref = {title=>this['title_' + i]=title}><span></span>{ this.state.projects[i]['Title'] }</div>
+                            <div className= "order" ref = {order=>this['order_' + i]=order}>0{i+1}</div>
+                            <div className = "detail-wrapper">
+                              <div className= "year" ref = {year=>this['year_' + i]=year}>{this.state.projects[i]['Year']}</div>
+                              <div className= "category" ref = {category=>this['category_' + i]=category}>{this.state.projects[i]['Category']}</div>
+                            </div>
+                        </div>
+                              {/* <Link to = {`/projects/${i}`}>
+                              <div className="arrow"
+                                   ref = {arrow => this['arrow_' + i] = arrow}
+                                   style={{backgroundImage: "url(" + Assets['Arrow_right'] + ")"}}></div>*/}
+
+                          <div className = "image-box" ref = {image_box =>this['imagebox_' + i] = image_box}>
+                            <img src = { this.state.projects[i]['Thumbnail'] }
+                                  alt = {'thumbnail_' + this.state.projects[i]['Title']}
+                                  className = "thumbnails"
+                                  ref = { thumbnail => this['thumbnail_' + i] = thumbnail }
+                                  onMouseEnter={()=> this.projectHover(i)}
+                                  onMouseLeave={()=> this.projectLeave(i)}
+                                  onClick = {()=> this.goToProj(i, this.state.projects[i]['Title'])}/>
 
 
-
-                          <div className="bounding-box">
                           </div>
-                          <img src = { this.state.projects[i]['Thumbnail'] }
-                                alt = {'thumbnail_' + this.state.projects[i]['Title']}
-                                className = "thumbnails"
-                                ref = { thumbnail => this['thumbnail_' + i] = thumbnail }/>
 
                         </div>
                       )
                   })}
                 </div>
-                <div className = "footer">
-                  <span></span>
-
-                </div>
               </div>
 
-              <div id="play" ref={ play => this.play = play }>
-                <div className = "play-title">
-                  play
-                </div>
-              </div>
+
               <div id="about" ref={ about => this.about = about }>
-                <div className = "about-title">
-                  about
-                </div>
-                <div className = "about-statment">
-                  <span></span>
-                    <p>
-                      Hello i'm Evan!
-                    </p>
-                  <span></span>
-                </div>
-                <div className = "socail">
-                  <ul className= "socail-list">
-                    <span></span>
-                    <div className ="socail-item">
-                      <a href= "" className="socail-link"></a>
-                    </div>
-                  </ul>
-                </div>
-              </div>
+                <div className = "section-one">
+                  <div className = "about-me-header">
+                      <h3>Hello There</h3>
+                      <img className= "blur" src = {Assets['Blur']}/>
+                  </div>
+                  <div className = "about-me-first"><p>I'm <em>Evan.</em></p>
+                    <div className = "me-list">
+                      <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
+                      <li><a><Link to ="/Archive">Archive</Link></a></li>
 
+                    </div></div>
+
+                  <div id = "meimage" ref={ homeimage => this.homeimage = homeimage}></div>
+
+                  <p className = "about-me-second">A multidisplanry <em>designer</em></p>
+
+                    <div className = "contact-list">
+                      <li><a href = "mailto:ejvoll@umich.edu">Email</a></li>
+                      <li><a href = "https://www.behance.net/evanvollick" traget = "_blank"> Behance </a></li>
+                      <li><a href = "https://www.linkedin.com/in/evan-vo/" traget = "_blank"> LinkedIn</a></li>
+                      <li><a href = "https://github.com/evievo" traget = "_blank">GitHub</a> </li>
+                    </div>
+
+                  <div className = "resume-archive">
+
+                  </div>
+
+                  <div id="footer">
+                    <div onMouseEnter = {() => this.topEnter()} onMouseLeave = {() => this.topLeave()} onClick={()=>this.scrollTo(this.home)}>
+                      <img src={Assets["Top"]} alt="top Button" className="top-button" />
+                    </div>
+                    <span className ="bar"></span>
+                    <div className = "copyright">2020</div>
+                    <div className = "footer-name">EVAN V-O</div>
+                  </div>
+
+
+
+
+                </div>
+                </div>
+{/*
+
+                <div className = "skills" onClick ={() => this.skillsClick()}>
+                  <p className = "skills-p"
+                     onMouseEnter = {() => this.listHover(".skills-p")}
+                     onMouseLeave = {() => this.listLeave(".skills-p")}>
+                    <span className = "left">
+                      <div className= "move-text">SKILLS</div>
+                    </span>
+                    <p className= "mask">Skills</p>
+                  </p>
+
+                  <div className= "skillslist">
+                    {this.state.showSkills ? this.skillsReturn() : null}
+                  </div>
+
+
+                </div>
+
+                <div className = "process" onClick={() => this.processClick()}>
+                  <p className = "process-p"
+                     onMouseEnter = {() => this.listHover(".process-p")}
+                     onMouseLeave = {() => this.listLeave(".process-p")}>
+                    <span className = "left">
+                      <div className= "move-text">PROCESS</div>
+                    </span>
+                    <p className= "mask">Process</p>
+                  </p>
+                  <div className="processlist">
+                    {this.state.showProcess ? this.processReturn() : null}
+                  </div>
+
+
+                </div>
+              </div>*/}
+
+              {/*<div id="contact" ref={ contact => this.contact = contact }>
+                <div className = "contact-block">
+                  <div className = "contact-header">
+                    <span></span>
+                      <h3>Hire Me</h3>
+                  </div>
+                  <div className = "contact-me">
+                    <p>Currently seaching for a full-time postion. Accepting freelance work as well...email for inquries </p>
+                  </div>
+
+
+                </div>
+
+              </div>*/}
 
 
 
             </div>
 
-
-          <Route path='/archive' render ={() => <Archive init = {true}/>}/>
-
+          <Switch>
+            <Route path='/archive' render ={() => <Archive init = {true}/>}/>
+          </Switch>
          </div>
       </div>
       </BrowserRouter>

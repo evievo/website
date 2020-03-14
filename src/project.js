@@ -1,90 +1,97 @@
 
-import coasters from './images/thumbnails/coasters.JPG'
-import clock from './images/thumbnails/02_clock.JPG'
-import ggbl from './images/thumbnails/GGBL.jpg'
-import ember from './images/thumbnails/ember.JPG'
-import groovie from './images/thumbnails/groovie.png'
+import coasters from './images/thumbnails/CoastersThumbnail.jpg'
+import clock from './images/thumbnails/ThumbnailClock.jpg'
+import ggbl from './images/thumbnails/ThumbnailGGBL.jpg'
+import ember from './images/thumbnails/ThumbnailEmber.jpg'
+import groovie from './images/thumbnails/ThumbnailGroovie.jpg'
+import groovieData from './projectPages/groovie.js'
 import hoop from './images/thumbnails/HoopHaven.jpg'
 import pages from './images/thumbnails/Pages.jpg'
 import chair from './images/thumbnails/chair.jpg'
 
+  var data = []
+  data[0] = {
+              stuff: "hi"
+            };
+
 
   var projects = [];
-  projects[0] = {Title: "Industrial Coasters",
+  projects[1] = {Title: "Industrial Coasters",
                  Bio: "",
-                 Url: "",
                  Year: "2019",
                  Thumbnail: coasters,
                  Archived: false,
-                 Category: "graphic/industrial",
+                 Category: "graphic",
+                 Data: data[0]
                };
 
-  projects[1] = {Title: "PlayTime",
+  projects[4] = {Title: "PlayTime",
                  Bio: "",
-                 Url: "",
                  Year: "2019",
                  Thumbnail: clock,
                  Archived: false,
-                 Category: ["graphic", "industrial"]
+                 Category: "industrial",
+                 Data: data[0],
                };
 
-  projects[3] = {Title: "GGBL",
+  projects[2] = {Title: "GGBL",
                  Bio: "",
-                 Url: "",
                  Year: "2019",
                  Thumbnail: ggbl,
                  Archived: false,
-                 Category: "graphic"
+                 Category: "graphic",
+                 Data: data[0]
                };
 
-  projects[2] = {Title: "ember",
+  projects[3] = {Title: "ember",
                  Bio: "",
-                 Url: "",
                  Year: "2019",
                  Thumbnail: ember,
                  Archived: false,
-                 Category: "industrial"
+                 Category: "industrial",
+                 Data: data[0]
                 };
 
-  projects[4] = {Title: "groovie",
-                 Bio: "",
-                 Url: "",
+  projects[0] = {Title: "groovie",
+                 Bio: "Groovie is a product designed to help elementray kids devolp a healthy realtionship with technology. After conducting studies, ideations, focus groups, and prototypping we settled on honing in on moderating technology in a fun, empowing, and healthy way.",
                  Year: "2019",
                  Thumbnail: groovie,
                  Archived: false,
-                 Category: ["industrial"]
+                 Category: "industrial - ui/ux",
+                 Data: groovieData,
                 };
 
   projects[6] = {Title: "Pages",
                  Bio: "",
-                 Url: "",
                  Year: "2019",
                  Thumbnail: pages,
                  Archived: false,
-                 Category: "industrial"
+                 Category: "industrial",
+                 Data: data[0]
                 };
 
   projects[5] = {Title: "Hoop Haven",
                  Bio: "",
-                 Url: "",
                  Year: "2019",
                  Thumbnail: hoop,
                  Archived: false,
-                 Category: "industrial"
+                 Category: "industrial",
+                 Data: data[0]
                 };
 
   projects[7] = {Title: "Dagligdags Chair",
                  Bio: "",
-                 Url: "",
                  Year: "2019",
                  Thumbnail: chair,
                  Archived: false,
-                 Category: "industrial"
+                 Category: "industrial",
+                 Data: data[0]
                 };
 
-
-
-
-
+  for (let i = 0; i < projects.length; i++){
+    if(i > 4){
+      projects[i]['Archived'] = true;
+    }
+  }
 
 export default projects;
