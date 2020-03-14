@@ -292,13 +292,14 @@ a:hover, a:active { text-decoration: none;}
 
 #fixed .intro .intro-2020{
   font-family: var(--type-fam-serif);
+  font-style: italic;
   font-size:15pt;
   margin-left: 10px;
   margin-top: 150px;
   text-align: left;
 }
 #fixed .intro .intro-2020 span{
-  height: 0.7px;
+  height: 0.0px;
   width: 200px;
   position: absolute;
   left:-40px;
