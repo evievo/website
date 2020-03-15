@@ -424,7 +424,8 @@ class Main extends React.Component {
 
 
   goToProj(i, name){
-    loadTl.reverse().then(() => {window.location= "/projects/" + (i + 1) + ":" + name;})
+  
+    loadTl.reverse().then(() => {window.location.replace("/projects/" + (i + 1) + ":" + name);})
   }
 
 
@@ -782,6 +783,7 @@ class Main extends React.Component {
 
           <Switch>
             <Route path='/archive' render ={() => <Archive init = {true}/>}/>
+            <Route path={`/projects/:projectId`} component={ProjectPage}/>
           </Switch>
          </div>
       </div>
