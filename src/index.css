@@ -29,6 +29,8 @@ body {
   background-color: var(--main-grey-color);
 }
 
+
+
 ::-webkit-scrollbar {
     display: none;
 }
@@ -106,12 +108,9 @@ a:hover, a:active { text-decoration: none;}
 
 }
 
-@keyframes cursorAnim{
-  from{
-    transform: rotate(0deg);
-  }
-  to{
-    transform: rotate(360deg);
+@media (hover: none) {
+  .cursor{
+    opacity: 0;
   }
 }
 
