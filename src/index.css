@@ -300,7 +300,7 @@ a:hover, a:active { text-decoration: none;}
   font-style: italic;
   font-size:20pt;
   margin-left: -50px;
-  margin-top: 510px;
+  margin-top: 465px;
   text-align: right;
   float:left;
   transform: rotate(-90deg);
@@ -797,20 +797,43 @@ a:hover, a:active { text-decoration: none;}
 #about .about-me-first{
   font-family: var(--type-fam-reg);
   position: relative;
-  margin-top: -260px;
-  margin-left: auto;
-  margin-right: 30px;
-  line-height: 1.25;
+  margin-top: -60px;
+  margin-left: 30px;
+  margin-right: auto;
+  line-height: 1.2;
   height:0vh;
-  width: 420px;
-  font-size: 20pt;
+  width: 60vw;
+  font-size: 25pt;
   text-align: left;
   font-weight: 300;
   color:white;
+  padding-bottom: 5px;
+  float:left;
 }
 
+
+
 #about .about-me-first p::after {
-  content: " I do graphics, I do branding, I also do industrail design. I try to craft expereinces that go beyond basic epections. I like simplicaity. I am a recent graduate who loves designing and programming. I get stuff done, I am looking for a job, I am accepeting freelance work, i like to party, i like to help fridends and strangers, i like digital products, I like physical ones more. Let's talk..."
+  content: " I recently graduated from the University of Michigan with a focus in digital and physical product design. Oh, and a computer science minor. I am very interested in the future of how pysical products will mainfest in digital ones. I am currently looking for an intership or full-time postion. I am very collbaeritive person in nature and love a good challenge."
+}
+
+#about .meimage{
+  opacity: .7;
+  height: 614.25px;
+  width: 900px;
+  z-index: -1;
+
+
+  /*box-shadow: 2px 2px 15px rgba(10,10,11,1);*/
+
+  position: relative;
+  margin-top: 500px;
+  padding-top: 10px;
+  margin-left: 0px;
+  background-size: auto 45vw ;
+  background-image: url('./images/me.jpg');
+  background-repeat: no-repeat;
+
 }
 
 #about .section-one em{
@@ -818,13 +841,14 @@ a:hover, a:active { text-decoration: none;}
 }
 
 #about .about-me-second{
-  font-family: var(--type-fam-reg);
+  font-family: var(--type-fam-serif);
   position: relative;
-  margin-left: 30px;
+  margin-top: -400px;
+  margin-left: 800px;
   line-height: 1.1;
   pointer-events: none;
   height:auto;
-  width: 50vw;
+  width: 100px;
   text-transform: uppercase;
   font-size: 45pt;
   text-align: left;
@@ -833,7 +857,7 @@ a:hover, a:active { text-decoration: none;}
 }
 
 #about .about-me-second::after{
-  content: " with programming skills intersted in future design systems";
+  content: "";
 }
 
 
@@ -882,7 +906,7 @@ a:hover, a:active { text-decoration: none;}
   color:white;
   position: relative;
   margin-left: 35px;
-  margin-top: -20px;
+  margin-top: 200px;
   font-family: var(--type-fam-serif);
   font-style: italic;
   font-size: 14pt;
@@ -893,7 +917,7 @@ a:hover, a:active { text-decoration: none;}
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  width: 40vw;
+  width: 800px;
   list-style:none;
   text-transform: uppercase;
 
@@ -1148,29 +1172,12 @@ a:hover, a:active { text-decoration: none;}
 
 }
 
-#about #meimage{
-  opacity: 1;
-  display: block;
-  height: 614.25px;
-  width: 430px;
-  z-index: 20;
 
-
-  /*box-shadow: 2px 2px 15px rgba(10,10,11,1);*/
-
-  position: relative;
-  margin-top: 180px;
-
-  margin-left: 30px;
-  background-size: 65vh auto;
-  background-image: url('./images/me2.jpg');
-  background-repeat: no-repeat;
-
-}
 
 /*---------FOOTER-------------------*/
 #footer {
-  padding-top: 20px;
+  margin-top: -80px;
+  padding-top: 0px;
   position: relative;
   padding-top: 50px;
   width: auto;

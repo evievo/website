@@ -548,7 +548,7 @@ class Main extends React.Component {
   }
   scrollTo(section){
     let offset = -400;
-    if (section === this.home){offset = -10;}
+    if (section === this.page){offset = 0;}
     TweenMax.to(window, 2, {scrollTo: {y:section, offsetY: offset}, ease: Power3.easeInOut});
   }
 
@@ -694,19 +694,20 @@ class Main extends React.Component {
               <div id="about" ref={ about => this.about = about }>
                 <div className = "section-one">
                   <div className = "about-me-header">
-                      <h3>Hello There</h3>
+                      <h3>Hello World</h3>
 
                   </div>
                   <div className = "about-me-first"><p>I'm <em>Evan.</em></p>
-                    <div className = "me-list">
+                    {/*<div className = "me-list">
                       <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
                       <li><a><Link to ="/Archive">Archive</Link></a></li>
 
-                    </div></div>
+                      </div>*/}
+                    </div>
 
-                  <div id = "meimage" ref={ homeimage => this.homeimage = homeimage}></div>
+                  <div className = "meimage" ref={ homeimage => this.homeimage = homeimage}></div>
 
-                  <p className = "about-me-second">A multidisplanry <em>designer</em></p>
+                  <p className = "about-me-second">UI/UX Code Graphic Industrial</p>
 
                     <div className = "contact-list">
                       <li><a href = "mailto:ejvoll@umich.edu">Email</a></li>
@@ -720,7 +721,7 @@ class Main extends React.Component {
                   </div>
 
                   <div id="footer">
-                    <div onMouseEnter = {() => this.topEnter()} onMouseLeave = {() => this.topLeave()} onClick={()=>this.scrollTo(this.home)}>
+                    <div onMouseEnter = {() => this.topEnter()} onMouseLeave = {() => this.topLeave()} onClick={()=>this.scrollTo(this.page)}>
                       <img src={Assets["Top"]} alt="top Button" className="top-button" />
                     </div>
                     <span className ="bar"></span>
