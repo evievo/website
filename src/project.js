@@ -49,7 +49,8 @@ import chair from './images/thumbnails/chair.jpg'
                  Thumbnail: ember,
                  Archived: false,
                  Category: "industrial",
-                 Data: data[0]
+                 Data: data[0],
+                 Url: "https://www.behance.net/gallery/93734863/ember-a-urn-for-your-data"
                 };
 
   projects[0] = {Title: "groovie",

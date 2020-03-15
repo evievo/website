@@ -285,10 +285,10 @@ class Main extends React.Component {
 
       var first = new ScrollMagic.Scene({
         triggerElement: this.home,
-        duration: 800,
+        duration: 1000,
 
       })
-        .setTween(".intro-blur", { x: 1500, ease: Power1.ease})
+        .setTween(".intro-grid", { scale: 2, opacity:.5, ease: Power1.easeInOut})
         .addTo(controller);
 
         var second = new ScrollMagic.Scene({
@@ -362,10 +362,10 @@ class Main extends React.Component {
 
   blurMove(){
 
-      this.home.addEventListener("mousemove", (e) => {
-        let x = (this.mapscreen(e.clientX, window.innerWidth)*.02);
-        let y = (this.mapscreen(e.clientY, window.innerHeight)*.028);
-        TweenMax.to(".intro-blur", 0.4,{x: x,y:y, ease: Power1.easeOut});
+      document.addEventListener("mousemove", (e) => {
+        let x = (this.mapscreen(e.clientX, window.innerWidth)*.005);
+        let y = (this.mapscreen(e.clientY, window.innerHeight)*.01);
+        TweenMax.to(".intro-grid", 0.4,{x: x,y:y, ease: Power1.easeOut});
       });
 
   }
@@ -426,7 +426,10 @@ class Main extends React.Component {
 
   goToProj(i, name){
 
-    loadTl.reverse().then(() => {window.location.replace("/projects/" + (i + 1) + ":" + name);})
+    let url = this.state.projects[i]['Url'];
+    window.open(url, '_blank');
+
+    //loadTl.reverse().then(() => {window.location.replace("/projects/" + (i + 1) + ":" + name);})
   }
 
 
@@ -545,7 +548,7 @@ class Main extends React.Component {
   }
   scrollTo(section){
     let offset = -400;
-    if (section === this.home){offset = 0;}
+    if (section === this.home){offset = -10;}
     TweenMax.to(window, 2, {scrollTo: {y:section, offsetY: offset}, ease: Power3.easeInOut});
   }
 
@@ -614,10 +617,11 @@ class Main extends React.Component {
 
               <img className = "scroll-icon" src={Assets['Scroll']} alt="Scroll_ICON" />
               <img className= "intro-blur" src = {Assets['Blur']} alt = "blurrr"/>
+              <img className= "intro-grid" src = {Assets['Grid']} alt = "Griddd"/>
 
               <div className = "intro" ref= {intro => this.intro = intro}>
-                <p className = "intro-2020">2020 Temporary <br></br><br></br>2020 Temporary <br></br>2020 Temporary<span></span></p>
-                <p className = "intro-portfolio">Portfolio</p>
+                <p className = "intro-2020"><br></br>Designer <br></br> Devolper<span></span></p>
+                <p className = "intro-portfolio"> 2O2O <br></br>Portfolio<span></span></p>
 
 
               </div>
@@ -667,15 +671,15 @@ class Main extends React.Component {
                                    style={{backgroundImage: "url(" + Assets['Arrow_right'] + ")"}}></div>*/}
 
                           <div className = "image-box" ref = {image_box =>this['imagebox_' + i] = image_box}>
-                            <Link to= {"/projects/" + (i+1) + ":" + this.state.projects[i]['Title']}>
+                            {/*<Link to= {"/projects/" + (i+1) + ":" + this.state.projects[i]['Title']}>*/}
                             <img src = { this.state.projects[i]['Thumbnail'] }
                                   alt = {'thumbnail_' + this.state.projects[i]['Title']}
                                   className = "thumbnails"
                                   ref = { thumbnail => this['thumbnail_' + i] = thumbnail }
                                   onMouseEnter={()=> this.projectHover(i)}
                                   onMouseLeave={()=> this.projectLeave(i)}
-                                  />
-                            </Link>
+                                  onClick = {()=> this.goToProj(i, this.state.projects[i]['Title'])}/>
+
 
 
                           </div>
@@ -691,7 +695,7 @@ class Main extends React.Component {
                 <div className = "section-one">
                   <div className = "about-me-header">
                       <h3>Hello There</h3>
-                      <img className= "blur" src = {Assets['Blur']}/>
+
                   </div>
                   <div className = "about-me-first"><p>I'm <em>Evan.</em></p>
                     <div className = "me-list">
@@ -720,7 +724,7 @@ class Main extends React.Component {
                       <img src={Assets["Top"]} alt="top Button" className="top-button" />
                     </div>
                     <span className ="bar"></span>
-                    <div className = "copyright">2020</div>
+                    <div className = "copyright">© 2020</div>
                     <div className = "footer-name">EVAN V-O</div>
                   </div>
 

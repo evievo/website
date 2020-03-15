@@ -10,6 +10,7 @@ import resume_doc from "./static/resume.pdf"
 import blur from "./images/icons/Blur.svg"
 import scroll from "./images/icons/Scroll.svg"
 import top from "./images/icons/Top.svg"
+import grid from "./images/icons/Grid.svg"
 
 var assets = {Arrow_right: arrow_right,
               Arrow_white: arrow_white,
@@ -22,6 +23,7 @@ var assets = {Arrow_right: arrow_right,
               Logo: logo,
               Top: top,
               Scroll: scroll,
+              Grid: grid,
              };
 
 
