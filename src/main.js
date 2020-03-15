@@ -424,7 +424,7 @@ class Main extends React.Component {
 
 
   goToProj(i, name){
-  
+
     loadTl.reverse().then(() => {window.location.replace("/projects/" + (i + 1) + ":" + name);})
   }
 
@@ -666,22 +666,24 @@ class Main extends React.Component {
                                    style={{backgroundImage: "url(" + Assets['Arrow_right'] + ")"}}></div>*/}
 
                           <div className = "image-box" ref = {image_box =>this['imagebox_' + i] = image_box}>
+                            <Link to= {"/projects/" + (i+1) + ":" + this.state.projects[i]['Title']}>
                             <img src = { this.state.projects[i]['Thumbnail'] }
                                   alt = {'thumbnail_' + this.state.projects[i]['Title']}
                                   className = "thumbnails"
                                   ref = { thumbnail => this['thumbnail_' + i] = thumbnail }
                                   onMouseEnter={()=> this.projectHover(i)}
                                   onMouseLeave={()=> this.projectLeave(i)}
-                                  onClick = {()=> this.goToProj(i, this.state.projects[i]['Title'])}/>
+                                  />
+                            </Link>
 
 
                           </div>
-
                         </div>
                       )
                   })}
                 </div>
               </div>
+              {/*onClick = {()=> this.goToProj(i, this.state.projects[i]['Title'])}*/}
 
 
               <div id="about" ref={ about => this.about = about }>
