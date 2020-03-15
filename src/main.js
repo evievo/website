@@ -227,8 +227,9 @@ class Main extends React.Component {
   scrolleffect(up){
     let skew = -2;
     let move = 20;
-    let smallMove = 10;
-    if(up) {skew *= -1; move *= -1; smallMove *=-1}
+    let smallSkew = -1;
+    let smallMove = 15;
+    if(up) {skew *= -1; move *= -1; smallMove *=-1; smallSkew *=-1;}
 
     for(let i =0; i<this.state.projects.length; i++){
       TweenMax.to(this['imagebox_'+ i], 0.5, {y: move, skewY:skew});
@@ -242,7 +243,7 @@ class Main extends React.Component {
     for(let i = 0; i < text.length; i++){
 
       for(let j = 0; j < text[i].length; j++){
-        TweenMax.to(text[i][j], 0.5, {y: smallMove});
+        TweenMax.to(text[i][j], 0.5, {skewY:smallSkew,y: smallMove});
       }
       for(let j = 0; j < text[i].length; j++){
         TweenMax.to(text[i][j], 1.0, {y: 0, skewY:0, ease: Power3.easeOut});
@@ -275,15 +276,15 @@ class Main extends React.Component {
     var intro = this.intro;
     var timelineIntro = new TimelineMax();
 
-    timelineIntro.to(".intro-2020", 5,{ x: -1000, opacity:.5,ease: Power1.easeInOut});
-    timelineIntro.to(".intro-portfolio", 5,{ x: 1500, opacity:.5,ease: Power1.easeInOut},"-=5");
-    timelineIntro.to(".scroll-icon", 8, {rotation: 360, ease: Power1.easeInOut}, "-=8");
-    timelineIntro.to(".scroll-icon", 8, { y: -1000, opacity:.5, ease: Power1.easeInOut});
-    timelineIntro.to(".name", 5, { y: -300, opacity:.5, ease: Power1.easeInOut}, "-=4");
+    timelineIntro.to(".intro-2020", 10,{ x: -1000, opacity:.5,ease: Power1.easeInOut});
+    timelineIntro.to(".intro-portfolio", 10,{ x: 1500, opacity:.5,ease: Power1.easeInOut},"-=10");
+    timelineIntro.to(".scroll-icon", 8, {rotation: 360, ease: Power1.easeInOut}, "-=10");
+    timelineIntro.to(".scroll-icon", 8, { y: -1000, opacity:.5, ease: Power1.easeInOut}, "-=8");
+    timelineIntro.to(".name", 5, { y: -300, opacity:.5, ease: Power1.easeInOut}, "-=8");
 
 
       var first = new ScrollMagic.Scene({
-        triggerElement: this.projects,
+        triggerElement: this.home,
         duration: 800,
 
       })
@@ -291,8 +292,8 @@ class Main extends React.Component {
         .addTo(controller);
 
         var second = new ScrollMagic.Scene({
-          triggerElement: this.projects,
-          duration: 700,
+          triggerElement: this.home,
+          duration: 5000,
 
         })
           .setTween(timelineIntro)
