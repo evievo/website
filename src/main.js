@@ -548,8 +548,9 @@ class Main extends React.Component {
   }
   scrollTo(section){
     let offset = -400;
-    if (section === this.page){offset = 0;}
-    TweenMax.to(window, 2, {scrollTo: {y:section, offsetY: offset}, ease: Power3.easeInOut});
+    let time = 2;
+    if (section === this.page){offset = 0; time = 4;}
+    TweenMax.to(window, time, {scrollTo: {y:section, offsetY: offset}, ease: Power3.easeInOut});
   }
 
 

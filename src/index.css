@@ -285,10 +285,11 @@ a:hover, a:active { text-decoration: none;}
   font-size: var(--type-size-h1);
   text-align: right;
   position: absolute;
+  height: 100vh;
+  left:0;
   top:0;
-  width:calc(100vw - 50px);
+  width:100vw;
   text-transform: uppercase;
-  right: 60px;
   color: white;
   font-weight: 400;
 
@@ -329,7 +330,9 @@ a:hover, a:active { text-decoration: none;}
   -webkit-text-stroke: 1px white;
 }
 #fixed .intro .intro-portfolio{
-  margin-top: 380px;
+  position: absolute;
+  bottom: -100px;
+  right: 0px;
   font-family: var(--type-fam-reg);
   letter-spacing: -10px;
   margin-left: auto;
