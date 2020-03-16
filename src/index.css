@@ -13,6 +13,7 @@
   --thumb-width: 900px;
   --thumb-height: 600px;
   --marg-proj: 100px;
+  --grid-size: 800px;
 
 }
 
@@ -41,9 +42,29 @@ html, body {
     --thumb-width: 375px;
     --thumb-height: 250px;
     --marg-proj: 30px;
+    --grid-size: 80vh;
    }
+   #navbar .navNav{
+     opacity: 0;
+   }
+
+   #fixed .intro{
+     padding-left: 50px;
+     transform: rotate(90deg)!important;
+   }
+
+   #fixed .intro .scroll-icon{
+     left:auto;
+     right: -50px;
+     top:0px;
+     transform: rotate(-90deg)!important;
+   }
+
+
+
+
 }
-@media only screen  and (max-width: 900px) and (min-width: 651px) {
+@media only screen and (max-width: 900px) and (min-width: 651px) {
   :root{
     --type-size-h1-outline: 60pt;
     --type-size-h1: 70pt;
@@ -51,7 +72,14 @@ html, body {
     --thumb-width: 525px;
     --thumb-height: 350px;
     --marg-proj: 40px;
+    --grid-size: 600px;
    }
+
+   #fixed .intro .intro-portfolio{
+     bottom: -120px!important;
+     right:-50px!important;
+   }
+
 }
 
 @media only screen  and (max-width: 1150px) and (min-width: 901px){
@@ -62,6 +90,7 @@ html, body {
     --thumb-width: 750px;
     --thumb-height: 500px;
     --marg-proj: 60px;
+    --grid-size: 700px;
    }
 }
 
@@ -260,7 +289,7 @@ a:hover, a:active { text-decoration: none;}
 
 #fixed{
   position: fixed;
-  left: 20px;
+  left: 0px;
   top: 0;
   height: 100vh;
   width: 100vw;
@@ -270,11 +299,11 @@ a:hover, a:active { text-decoration: none;}
 #fixed .intro-grid{
 
   display: block;
-  padding-top: 200px;
+  padding-top: 50px;
   position: relative;
   margin:auto;
   height: auto;
-  width: 800px;
+  width: var(--grid-size);
   opacity: .99;
 }
 
@@ -295,7 +324,7 @@ a:hover, a:active { text-decoration: none;}
   font-size: 14pt;
   color: rgba(255,250,240,1);
   font-family: var(--type-fam-reg);
-  font-weight: 400;
+  font-weight: 300;
   line-height: .9;
   font-style: normal;
   letter-spacing: 0;
@@ -303,7 +332,7 @@ a:hover, a:active { text-decoration: none;}
   font-kerning: auto;
   width:50px;
   position: absolute;
-  left: 80px;
+  left: 90px;
   top:-10px;
 }
 
@@ -316,17 +345,19 @@ a:hover, a:active { text-decoration: none;}
 
 
 #fixed .intro{
+  margin-top: 200px;
   font-family: var(--type-fam-reg);
   font-size: var(--type-size-h1);
   text-align: right;
-  position: absolute;
-  height: 100vh;
-  left:0;
-  top:0;
-  width:100vw;
+  position: relative;
+  height: calc(var(--grid-size)/2);
+  margin-left: auto;
+  margin-right: auto;
+  width:var(--grid-size);
   text-transform: uppercase;
   color: white;
   font-weight: 400;
+  background-image: "/src/images/icons/Grid.svg"
 
 
 }
@@ -366,13 +397,12 @@ a:hover, a:active { text-decoration: none;}
 }
 #fixed .intro .intro-portfolio{
   position: absolute;
-  bottom: -100px;
-  right: 0px;
+  bottom: -200px;
+  right: -100px;
   font-family: var(--type-fam-reg);
   letter-spacing: -10px;
   margin-left: auto;
   margin-right: 40px;
-  float: right;
   line-height: 1;
   font-weight: 500;
 
@@ -400,8 +430,8 @@ a:hover, a:active { text-decoration: none;}
 
 #fixed .scroll-icon{
   position: absolute;
-  top:555px;
-  right:945px;
+  top:0px;
+  left:-40px;
   height: 100px;
   width: 100px;
 
@@ -518,12 +548,12 @@ a:hover, a:active { text-decoration: none;}
   font-family: var(--type-fam-reg);
   font-size:var(--type-size-h1-outline);
   color: rgba(0,0,0,0);
-  font-weight: 400;
-  text-transform: uppercase;
+  font-weight: 300;
+  text-transform: none;
   position: relative;
   margin-left: 25px;
   margin-top: 380px;
-  -webkit-text-stroke: 1px white;
+  -webkit-text-stroke: .75px white;
   letter-spacing: -5px;
   width: 200px;
   line-height: .9;
@@ -856,7 +886,7 @@ a:hover, a:active { text-decoration: none;}
 
 
 #about .about-me-first p::after {
-  content: " I recently graduated from the University of Michigan with a focus in digital and physical product design. Oh, and a computer science minor. I am very interested in the future of how pysical products will mainfest in digital ones. I am currently looking for an intership or full-time postion. I am very collbaeritive person in nature and love a good challenge."
+  content: " I recently graduated from the University of Michigan with a focus in digital and physical product design. Lorem ipsum dolor sit amet, consectetuer adipismod tincidunt ut laoreet dolore magnanibh euismod tincidunt ut laoreet dolore magnanibh euism dunt ut laoreet dolore magnanibh euismod tinc od gna."
 }
 
 #about .meimage{
@@ -872,7 +902,7 @@ a:hover, a:active { text-decoration: none;}
   margin-top: 500px;
   padding-top: 10px;
   margin-left: 0px;
-  background-size: auto 600px ;
+  background-size: auto 500px ;
   background-image: url('./images/me.jpg');
   background-repeat: no-repeat;
 
@@ -907,22 +937,23 @@ a:hover, a:active { text-decoration: none;}
 
 #about .about-me-header span{
   position: absolute;
-  top: 195px;
-  left: 100px;
+  top: -30px;
+  left: -50px;
   z-index: 21;
   width:calc(40vw);
-  height: 3px;
+  height: .75px;
+
 
   background-color: white;
 
 }
 #about .about-me-header{
   color: rgba(0,0,0,0);
-  text-transform: uppercase;
+  text-transform: none;
   font-size:var(--type-size-h1-outline);
   letter-spacing: -10px;
   text-align: left;
-  font-weight: 400;
+  font-weight: 300;
   font-family: var(--type-fam-reg);
   position: relative;
   top: 20px;
@@ -930,7 +961,7 @@ a:hover, a:active { text-decoration: none;}
   margin-left: 20px;
   line-height: .9;
   width: 200px;
-  -webkit-text-stroke: 1px white;
+  -webkit-text-stroke: .75px white;
 }
 
 

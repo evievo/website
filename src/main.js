@@ -276,11 +276,12 @@ class Main extends React.Component {
     var intro = this.intro;
     var timelineIntro = new TimelineMax();
 
-    timelineIntro.to(".intro-2020", 10,{ x: -1000, opacity:.5,ease: Power1.easeInOut});
-    timelineIntro.to(".intro-portfolio", 10,{ x: 1500, opacity:.5,ease: Power1.easeInOut},"-=10");
-    timelineIntro.to(".scroll-icon", 8, {rotation: 360, ease: Power1.easeInOut}, "-=10");
-    timelineIntro.to(".scroll-icon", 8, { y: -1000, opacity:.5, ease: Power1.easeInOut}, "-=8");
-    timelineIntro.to(".name", 5, { y: -300, opacity:.5, ease: Power1.easeInOut}, "-=8");
+    timelineIntro.to(".intro-2020", 1,{ x: -1000, opacity:.5,ease: Power1.easeInOut});
+    timelineIntro.to(".intro-portfolio", 1,{ x: 1500, opacity:.5,ease: Power1.easeInOut},"-=1");
+    timelineIntro.to(".scroll-icon", 2, {rotation: 360, ease: Power1.easeInOut}, "-=2");
+    timelineIntro.to(".scroll-icon", 2, { y: -1000, opacity:.5, ease: Power1.easeInOut}, "-=2");
+    timelineIntro.to(".name", 1, { y: -300, opacity:.5, ease: Power1.easeInOut}, "-=2");
+
 
 
       var first = new ScrollMagic.Scene({
@@ -294,6 +295,7 @@ class Main extends React.Component {
         var second = new ScrollMagic.Scene({
           triggerElement: this.home,
           duration: 5000,
+
 
         })
           .setTween(timelineIntro)
@@ -616,15 +618,16 @@ class Main extends React.Component {
                 </h1>
               </div>
 
-              <img className = "scroll-icon" src={Assets['Scroll']} alt="Scroll_ICON" />
+
               <img className= "intro-blur" src = {Assets['Blur']} alt = "blurrr"/>
-              <img className= "intro-grid" src = {Assets['Grid']} alt = "Griddd"/>
+
+
 
               <div className = "intro" ref= {intro => this.intro = intro}>
+                <img className= "intro-grid" src = {Assets['Grid']} alt = "Griddd"/>
                 <p className = "intro-2020"><br></br>Designer <br></br> Devolper<span></span></p>
-                <p className = "intro-portfolio"> 2O2O <br></br>Portfolio<span></span></p>
-
-
+                <p className = "intro-portfolio"> 2020 <br></br>Portfolio<span></span></p>
+                <img className = "scroll-icon" src={Assets['Scroll']} alt="Scroll_ICON" />
               </div>
 
             </div>
@@ -681,8 +684,6 @@ class Main extends React.Component {
                                   onMouseLeave={()=> this.projectLeave(i)}
                                   onClick = {()=> this.goToProj(i, this.state.projects[i]['Title'])}/>
 
-
-
                           </div>
                         </div>
                       )
@@ -695,6 +696,7 @@ class Main extends React.Component {
               <div id="about" ref={ about => this.about = about }>
                 <div className = "section-one">
                   <div className = "about-me-header">
+                      <span></span>
                       <h3>Hello World</h3>
 
                   </div>
