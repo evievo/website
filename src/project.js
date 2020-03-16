@@ -22,7 +22,8 @@ import chair from './images/thumbnails/chair.jpg'
                  Thumbnail: coasters,
                  Archived: false,
                  Category: "graphic",
-                 Data: data[0]
+                 Data: data[0],
+                 Url: "",
                };
 
   projects[4] = {Title: "PlayTime",
@@ -32,6 +33,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Archived: false,
                  Category: "industrial",
                  Data: data[0],
+                 Url: "",
                };
 
   projects[2] = {Title: "GGBL",
@@ -40,7 +42,8 @@ import chair from './images/thumbnails/chair.jpg'
                  Thumbnail: ggbl,
                  Archived: false,
                  Category: "graphic",
-                 Data: data[0]
+                 Data: data[0],
+                 Url: "",
                };
 
   projects[3] = {Title: "ember",
@@ -60,6 +63,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Archived: false,
                  Category: "industrial - ui/ux",
                  Data: groovieData,
+                 Url: "https://www.behance.net/gallery/93734863/ember-a-urn-for-your-data"
                 };
 
   projects[6] = {Title: "Pages",
@@ -68,7 +72,8 @@ import chair from './images/thumbnails/chair.jpg'
                  Thumbnail: pages,
                  Archived: false,
                  Category: "industrial",
-                 Data: data[0]
+                 Data: data[0],
+                 Url: "",
                 };
 
   projects[5] = {Title: "Hoop Haven",
@@ -77,7 +82,8 @@ import chair from './images/thumbnails/chair.jpg'
                  Thumbnail: hoop,
                  Archived: false,
                  Category: "industrial",
-                 Data: data[0]
+                 Data: data[0],
+                 Url: "",
                 };
 
   projects[7] = {Title: "Dagligdags Chair",
@@ -86,7 +92,8 @@ import chair from './images/thumbnails/chair.jpg'
                  Thumbnail: chair,
                  Archived: false,
                  Category: "industrial",
-                 Data: data[0]
+                 Data: data[0],
+                 Url: "",
                 };
 
   for (let i = 0; i < projects.length; i++){

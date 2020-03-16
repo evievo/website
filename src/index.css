@@ -2,17 +2,17 @@
 
 :root{
   --main-grey-color: rgba(25, 24, 23);
-  --mid-right: 60vw;
-  --mid-left: 50vw;
   --marg-right: 100px;
   --marg-left: 100px;
-  --type-fam-wide: 'acumin-pro-wide', sans-serif;
   --type-fam-reg: 'acumin-pro-wide', sans-serif;
   --type-fam-serif: 'baskerville-poster-pt', serif;
   --block-top: 24px;
-  --type-fam-body: 'acumin-pro', sans-serif;
   --type-size-h1: 110pt;
   --type-size-h1-outline: 90pt;
+  --type-size-h2: 40pt;
+  --thumb-width: 900px;
+  --thumb-height: 600px;
+  --marg-proj: 100px;
 
 }
 
@@ -29,6 +29,37 @@ body {
   background-color: var(--main-grey-color);
 }
 
+@media only screen  and (max-width: 650px) {
+  :root{
+    --type-size-h1-outline: 60pt;
+    --type-size-h1: 70pt;
+    --type-size-h2: 20pt;
+    --thumb-width: 375px;
+    --thumb-height: 250px;
+    --marg-proj: 30px;
+   }
+}
+@media only screen  and (max-width: 900px) and (min-width: 651px) {
+  :root{
+    --type-size-h1-outline: 60pt;
+    --type-size-h1: 70pt;
+    --type-size-h2: 30pt;
+    --thumb-width: 525px;
+    --thumb-height: 350px;
+    --marg-proj: 40px;
+   }
+}
+
+@media only screen  and (max-width: 1150px) and (min-width: 901px){
+  :root{
+    --type-size-h1-outline: 80pt;
+    --type-size-h1: 100pt;
+    --type-size-h2: 35pt;
+    --thumb-width: 750px;
+    --thumb-height: 500px;
+    --marg-proj: 60px;
+   }
+}
 
 
 ::-webkit-scrollbar {
@@ -514,10 +545,10 @@ a:hover, a:active { text-decoration: none;}
 }
 
 .project-container{
-  padding-top: 200px;
-  margin-top: 100px;
+  margin-top: var(--marg-proj);
+
   width: 100vw;
-  height: 590px;
+  height: var(--thumb-height);
 
   position: relative;
   pointer-events: none;
@@ -527,21 +558,16 @@ a:hover, a:active { text-decoration: none;}
 }
 
 .list .project-container .title{
-  font-size: 40pt;
+  font-size: var(--type-size-h2);
   color: white;
   font-family: var(--type-fam-serif);
   text-transform: uppercase;
   font-weight: 300;
-
   line-height: 1;
   z-index: 201;
   opacity: 1;
-
-
   position: absolute;
-
-  top:250px;
-
+  top:40%;
   right:30px;
   width: 50px;
 
@@ -583,32 +609,39 @@ a:hover, a:active { text-decoration: none;}
 }
 
 .list .project-container .detail-wrapper{
+  opacity: 0;
   font-family: var(--type-fam-reg);
-
+  z-index: 10;
   font-size: 10pt;
   text-transform: uppercase;
   font-weight: 300;
   color: white;
-  transform: rotate(-90deg);
-  position: absolute;
-  height: 50px;
-  width: 600px;
-  top: 275px;
-  left:595px;
+  position: relative;
+  height: 100%;
+  width: 50px;
+  top: 0px;
+  margin-right:-30px;
+  margin-left:auto;
 }
 
 .list .project-container .category {
-  opacity: 0;
-  z-index: -2;
-  float: left;
-  position: relative;
+
+
+  height: 1px;
+  width: 2px;
+  transform: rotate(-90deg);
+  position: absolute;
+  bottom: 0px;
 }
 
 .list .project-container .year {
-  opacity: 0;
-  z-index: -2;
-  position: relative;
-  float: right;
+
+  top:20px;
+  height: 1px;
+  width: 2px;
+  transform: rotate(-90deg);
+  position: absolute;
+
 }
 
 .list .project-container .image-box{
@@ -616,8 +649,8 @@ a:hover, a:active { text-decoration: none;}
   pointer-events: all;
   position: absolute;
   z-index: 200;
-  height: 600px;
-  width: 900px;
+  height: var(--thumb-height);
+  width: var(--thumb-width);
   top:80px;
   left:0px;
 
@@ -635,8 +668,8 @@ a:hover, a:active { text-decoration: none;}
   pointer-events: none;
   position: absolute;
 
-  height: 600px;
-  width: 900px;
+  height: var(--thumb-height);
+  width: var(--thumb-width);
   top:80px;
 
 
@@ -663,7 +696,7 @@ a:hover, a:active { text-decoration: none;}
 
 
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 750px) {
 
   .project-container:nth-child(odd){
 
@@ -694,9 +727,11 @@ a:hover, a:active { text-decoration: none;}
 
     }
   .list .project-container:nth-child(odd) .detail-wrapper{
-    left:auto;
-    right:570px;
+    margin-right:auto;
+    margin-left:0px;
   }
+
+
 
 
 
@@ -833,7 +868,7 @@ a:hover, a:active { text-decoration: none;}
   margin-top: 500px;
   padding-top: 10px;
   margin-left: 0px;
-  background-size: auto 45vw ;
+  background-size: auto 600px ;
   background-image: url('./images/me.jpg');
   background-repeat: no-repeat;
 

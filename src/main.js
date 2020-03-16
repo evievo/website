@@ -285,10 +285,10 @@ class Main extends React.Component {
 
       var first = new ScrollMagic.Scene({
         triggerElement: this.home,
-        duration: 1000,
+        duration: 3000,
 
       })
-        .setTween(".intro-grid", { scale: 2, opacity:.5, ease: Power1.easeInOut})
+        .setTween(".intro-grid", { scale: 3, opacity:0, ease: Power1.easeInOut})
         .addTo(controller);
 
         var second = new ScrollMagic.Scene({
@@ -382,8 +382,8 @@ class Main extends React.Component {
       if(i % 2 === 0){
         details *= -1;
       }
-      TweenMax.to(this['year_' + i], .6, {y:details, opacity: 1});
-      TweenMax.to(this['category_' + i], .6, {y:details, opacity:1});
+      TweenMax.to(this['details_' + i], .6, {x:details, opacity: 1});
+
 
 
   });
@@ -392,8 +392,8 @@ class Main extends React.Component {
 
   projectLeave(i){
     this.mouseUnhover();
-    TweenMax.to(this['year_' + i], .6, {y:0, opacity:0});
-    TweenMax.to(this['category_' + i], .6, {y:0, opacity:0});
+    TweenMax.to(this['details_' + i], .6, {x:0, opacity:0});
+
     TweenMax.to(this['thumbnail_' + i], 0.6,{x: 0,y:0, scale: 1.0, ease: Power3.easeOut})
   //  TweenMax.to(this['title_' + i], 0.4,{ opacity:0});
   }
@@ -661,7 +661,7 @@ class Main extends React.Component {
                             {/*<span></span>*/}
                             <div className = "title" ref = {title=>this['title_' + i]=title}><span></span>{ this.state.projects[i]['Title'] }</div>
                             <div className= "order" ref = {order=>this['order_' + i]=order}>0{i+1}</div>
-                            <div className = "detail-wrapper">
+                            <div className = "detail-wrapper" ref = {details=>this['details_' + i]=details}>
                               <div className= "year" ref = {year=>this['year_' + i]=year}>{this.state.projects[i]['Year']}</div>
                               <div className= "category" ref = {category=>this['category_' + i]=category}>{this.state.projects[i]['Category']}</div>
                             </div>
