@@ -21,11 +21,11 @@
   cursor: hidden;
 }
 
-body {
+html, body {
   width:100vw;
   margin: 0px;
-
-  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden!important;;
   background-color: var(--main-grey-color);
 }
 
