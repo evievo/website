@@ -21,11 +21,15 @@
   cursor: hidden;
 }
 
+
+
+
+
 html, body {
   width:100vw;
   margin: 0px;
-  -webkit-overflow-scrolling: touch;
-  overflow-x: hidden!important;;
+
+  overflow-x: hidden;
   background-color: var(--main-grey-color);
 }
 
