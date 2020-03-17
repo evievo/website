@@ -9,7 +9,7 @@ render() {
 
     <div>
       <Helmet>
-        <title>Evan Vollick-Offer x Design</title>
+        <title>Evan Vollick-Offer</title>
         <meta name="description" content="Evan Vollick-Offer's Portfolio" />
       </Helmet>
 

@@ -230,20 +230,21 @@ class Main extends React.Component {
   }
 
   scrolleffect(up){
-    let skew = -2;
-    let move = 20;
-    let smallSkew = -1;
-    let smallMove = 15;
+    let skew = -.75;
+    let move = 10;
+    let smallSkew = -.75;
+    let smallMove = 10;
     if(up) {skew *= -1; move *= -1; smallMove *=-1; smallSkew *=-1;}
 
     for(let i =0; i<this.state.projects.length; i++){
-      TweenMax.to(this['imagebox_'+ i], 0.5, {y: move, skewY:skew});
+      TweenMax.to(this['title_'+ i], 0.5, {y: move, skewY:skew});
     }
     for(let i =0; i<this.state.projects.length; i++){
-      TweenMax.to(this['imagebox_'+ i], 1.2, {duration: 2, y: 0, skewY:0, ease: Power3.easeOut});
+      TweenMax.to(this['title_'+ i], 1.2, {duration: 2, y: 0, skewY:0, ease: Power3.easeOut});
     }
 
-    var text = [this.about.getElementsByTagName("p"),document.getElementsByTagName("h3")];
+    var text = [this.about.getElementsByTagName("p"),this.about.getElementsByTagName("li"),
+    document.getElementsByTagName("h3"),this.about.getElementsByTagName("img")];
     console.log(text);
     for(let i = 0; i < text.length; i++){
 
@@ -279,6 +280,7 @@ class Main extends React.Component {
     const controller = new ScrollMagic.Controller();
   //  var sections = [this.home, this.list, this.about]
     var intro = this.intro;
+    timelineIntro.restart();
     timelineIntro.clear();
 
 
@@ -286,37 +288,29 @@ class Main extends React.Component {
 
 
     if(this.state.width <= 650){
-      timelineIntro.to(".intro-portfolio", 1,{ skewX: -3,x: -5500, opacity:.5,ease: Power1.easeInOut},"-=1.5");
+      timelineIntro.to(".intro-portfolio", 1,{ skewX: -3,x: -4500, opacity:.5,ease: Power1.easeInOut},"-=1.5");
       timelineIntro.to(".scroll-icon", 2, {rotation: 360, ease: Power1.easeInOut}, "-=2");
       timelineIntro.to(".scroll-icon", 2, { x: -2000, opacity:.5, ease: Power1.easeInOut}, "-=2");
     }
     else{
-      timelineIntro.to(".intro-portfolio", 1,{ skewY: -3,y: -5500, opacity:.5,ease: Power1.easeInOut},"-=1.5");
+      timelineIntro.to(".intro-portfolio", 1,{ skewY: -3,y: -4500, opacity:.5,ease: Power1.easeInOut},"-=1.5");
       timelineIntro.to(".scroll-icon", 2, {rotation: 360, ease: Power1.easeInOut}, "-=2");
       timelineIntro.to(".scroll-icon", 2, { y: -1000, opacity:.5, ease: Power1.easeInOut}, "-=2");
     }
 
     timelineIntro.to(".name", 1, { y: -300, opacity:.5, ease: Power1.easeInOut}, "-=2");
+    timelineIntro.to(".intro-grid", 1, { scale: 1.2, opacity:.2, ease: Power1.easeInOut}, "-=2");
 
 
 
-      var first = new ScrollMagic.Scene({
+      var second = new ScrollMagic.Scene({
         triggerElement: this.home,
-        duration: 3000,
-        offset:300,
+        duration: 5000,
+
 
       })
-        .setTween(".intro-grid", 2, { scale: 1.2, opacity:.2, ease: Power1.easeInOut})
+        .setTween(timelineIntro)
         .addTo(controller);
-
-        var second = new ScrollMagic.Scene({
-          triggerElement: this.home,
-          duration: 5000,
-
-
-        })
-          .setTween(timelineIntro)
-          .addTo(controller);
 
   }
 
@@ -767,6 +761,7 @@ class Main extends React.Component {
 
 
                     <div className = "contact-list">
+                      <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
                       <li><a href = "mailto:ejvoll@umich.edu">Email</a></li>
                       <li><a href = "https://www.behance.net/evanvollick" traget = "_blank"> Behance </a></li>
                       <li><a href = "https://www.linkedin.com/in/evan-vo/" traget = "_blank"> LinkedIn</a></li>

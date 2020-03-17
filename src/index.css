@@ -994,6 +994,7 @@ a:hover, a:active { text-decoration: none;}
   z-index: 21;
   width:calc(40vw);
   height: .75px;
+  opacity: 0;
 
 
   background-color: white;

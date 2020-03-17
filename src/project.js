@@ -23,7 +23,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Archived: false,
                  Category: "graphic",
                  Data: data[0],
-                 Url: "",
+                 Url: "https://www.behance.net/gallery/93917927/Industrial-Coasters",
                };
 
   projects[4] = {Title: "PlayTime",
@@ -33,7 +33,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Archived: false,
                  Category: "industrial",
                  Data: data[0],
-                 Url: "",
+                 Url: "https://www.behance.net/gallery/93917691/Play-Time-Clock",
                };
 
   projects[2] = {Title: "GGBL",
@@ -43,7 +43,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Archived: false,
                  Category: "graphic",
                  Data: data[0],
-                 Url: "",
+                 Url: "https://www.behance.net/gallery/93918041/GGBL-Wayfinding",
                };
 
   projects[3] = {Title: "ember",
@@ -63,7 +63,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Archived: false,
                  Category: "industrial - ui/ux",
                  Data: groovieData,
-                 Url: "https://www.behance.net/gallery/93734863/ember-a-urn-for-your-data"
+                 Url: "https://www.behance.net/gallery/93848625/Groovie"
                 };
 
   projects[6] = {Title: "Pages",
@@ -83,7 +83,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Archived: false,
                  Category: "industrial",
                  Data: data[0],
-                 Url: "",
+                 Url: "https://www.behance.net/gallery/93918271/Hoop-Haven",
                 };
 
   projects[7] = {Title: "Dagligdags Chair",
@@ -93,7 +93,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Archived: false,
                  Category: "industrial",
                  Data: data[0],
-                 Url: "",
+                 Url: "https://www.behance.net/gallery/93920075/Dagligdags-Chair",
                 };
 
   for (let i = 0; i < projects.length; i++){
