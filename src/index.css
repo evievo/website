@@ -180,6 +180,32 @@ a:hover, a:active { text-decoration: none;}
   }
 }
 
+#mobile {
+  position: fixed;
+  left:0px;
+  top:0px;
+  z-index: 998;
+  width: 100vw;
+  height: 100vh;
+  background-color: blue;
+  opacity: .9;
+}
+
+#mobile .mobileNav{
+  width: 50vw;
+  position: relative;
+  margin-top: 20vh;
+  margin-left:auto;
+  margin-right: auto;
+  font-family: var(--type-fam-reg);
+  list-style: none;
+  font-size: var(--type-size-h2);
+  text-align: center;
+
+}
+#mobile .mobileNav li{
+  padding-bottom: 10vh;
+}
 
 
 #navbar {
@@ -266,6 +292,7 @@ a:hover, a:active { text-decoration: none;}
   margin-top: 15px;
   width:100px;
   height: 70px;
+  z-index: 999;
 }
 
 #navbar .hamNav .line-one{
@@ -345,7 +372,6 @@ a:hover, a:active { text-decoration: none;}
 
 
 #fixed .intro{
-  margin-top: 200px;
   font-family: var(--type-fam-reg);
   font-size: var(--type-size-h1);
   text-align: right;
@@ -353,6 +379,7 @@ a:hover, a:active { text-decoration: none;}
   height: calc(var(--grid-size)/2);
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20vh;
   width:var(--grid-size);
   text-transform: uppercase;
   color: white;
@@ -451,7 +478,7 @@ a:hover, a:active { text-decoration: none;}
 
   grid-row-start: 1;
   margin-top: 100vh;
-  height: 400vh;
+  height: 200vh;
 
   width: 100vw;
   position: relative;
@@ -535,7 +562,7 @@ a:hover, a:active { text-decoration: none;}
 
 
 #projects{
-  padding-top: 500px;
+  padding-top: 100px;
   background-color: none;
   grid-row-start: 2;
   position: relative;
@@ -890,9 +917,9 @@ a:hover, a:active { text-decoration: none;}
 }
 
 #about .meimage{
-  opacity: .7;
-  height: 614.25px;
-  width: 900px;
+  opacity: 1;
+  width:var(--thumb-width);
+  height:var(--thumb-height);
   z-index: -1;
 
 
@@ -902,6 +929,7 @@ a:hover, a:active { text-decoration: none;}
   margin-top: 500px;
   padding-top: 10px;
   margin-left: 0px;
+  background-color: rgba(0,0,0,1);
   background-size: auto 500px ;
   background-image: url('./images/me.jpg');
   background-repeat: no-repeat;
@@ -913,16 +941,17 @@ a:hover, a:active { text-decoration: none;}
 }
 
 #about .about-me-second{
+
   font-family: var(--type-fam-serif);
   position: relative;
-  margin-top: -400px;
-  margin-left: 800px;
+  margin-top: calc(var(--thumb-height)/3);
+  float: right;
   line-height: 1.1;
   pointer-events: none;
   height:auto;
   width: 100px;
   text-transform: uppercase;
-  font-size: 45pt;
+  font-size: var(--type-size-h2);
   text-align: left;
   font-weight: 400;
   color:white;
@@ -990,7 +1019,7 @@ a:hover, a:active { text-decoration: none;}
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  width: 800px;
+  width: var(--thumb-width);
   list-style:none;
   text-transform: uppercase;
 

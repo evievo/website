@@ -60,6 +60,7 @@ class Main extends React.Component {
       color: "",
       showProcess: false,
       showSkills: false,
+      showMobile:false,
     };
 
     this.skillsClick = this.skillsClick.bind(this);
@@ -93,6 +94,7 @@ class Main extends React.Component {
         color: "white",
         showSkills: false,
         showProcess: false,
+        showMobile:false,
       });
   }
 
@@ -277,7 +279,7 @@ class Main extends React.Component {
     var timelineIntro = new TimelineMax();
 
     timelineIntro.to(".intro-2020", 1,{ x: -1000, opacity:.5,ease: Power1.easeInOut});
-    timelineIntro.to(".intro-portfolio", 1,{ x: 1500, opacity:.5,ease: Power1.easeInOut},"-=1");
+    timelineIntro.to(".intro-portfolio", 1,{ skewY: -3,y: -5500, opacity:.5,ease: Power1.easeInOut},"-=1.5");
     timelineIntro.to(".scroll-icon", 2, {rotation: 360, ease: Power1.easeInOut}, "-=2");
     timelineIntro.to(".scroll-icon", 2, { y: -1000, opacity:.5, ease: Power1.easeInOut}, "-=2");
     timelineIntro.to(".name", 1, { y: -300, opacity:.5, ease: Power1.easeInOut}, "-=2");
@@ -287,9 +289,10 @@ class Main extends React.Component {
       var first = new ScrollMagic.Scene({
         triggerElement: this.home,
         duration: 3000,
+        offset:300,
 
       })
-        .setTween(".intro-grid", { scale: 3, opacity:0, ease: Power1.easeInOut})
+        .setTween(".intro-grid", 2, { scale: 1.2, opacity:.2, ease: Power1.easeInOut})
         .addTo(controller);
 
         var second = new ScrollMagic.Scene({
@@ -346,7 +349,6 @@ class Main extends React.Component {
 
     document.addEventListener("mousemove", (e) => {
       if(!cursor_stop){
-
         TweenMax.to(this.cursor, 0.6, { css: { left: e.clientX, top: (e.clientY+window.pageYOffset)} });
       }
     });
@@ -522,14 +524,51 @@ class Main extends React.Component {
   }
 
   hamClick(){
-    if (!hamToggle.toggled){
-        hamToggle.toggled = true;
-        hamToggle.timeline.play();
+    if(this.state.width <= 650) {
+      if(this.state.showMobile === false){
+        this.setState({showMobile: true});
+        TweenMax.set("#mobile", {y:0});
+        TweenMax.from("#mobile", 2, {y: -2000});
+      }
+      else{
+        TweenMax.to("#mobile", 2, {y: -2000})
+        .then(()=>this.setState({showMobile: false}));
+
+      }
+
     }
     else{
-      hamToggle.toggled = false;
-      hamToggle.timeline.reverse();
+      if(this.state.showMobile === false){
+        TweenMax.to("#mobile", 2, {y: -2000})
+        .then(()=>this.setState({showMobile: false}));
+      }
+      if (!hamToggle.toggled){
+          hamToggle.toggled = true;
+          hamToggle.timeline.play();
+      }
+      else{
+        hamToggle.toggled = false;
+        hamToggle.timeline.reverse();
+      }
     }
+  }
+
+  mobileReturn(){
+    return(
+      <div>
+        <div className = "mobileNav">
+            <li>work</li>
+            <li>about</li>
+        </div>
+        <div className = "mobileSocail">
+          <li><a href = "mailto:ejvoll@umich.edu">Email</a></li>
+          <li><a href = "https://www.behance.net/evanvollick" traget = "_blank"> Behance </a></li>
+          <li><a href = "https://www.linkedin.com/in/evan-vo/" traget = "_blank"> LinkedIn</a></li>
+          <li><a href = "https://github.com/evievo" traget = "_blank">GitHub</a> </li>
+        </div>
+
+      </div>
+    );
   }
 
   mouseHover(){
@@ -586,6 +625,9 @@ class Main extends React.Component {
 
               <div className = "border-top"></div>
               <div className = "viewport"></div>
+              <div id="mobile">
+                  {this.state.showMobile ? this.mobileReturn() : null}
+              </div>
 
               <div className="mainNav">
                 <a href = "/">
@@ -598,7 +640,6 @@ class Main extends React.Component {
                   <div className = "circle"></div>
                   <li className = "work-toggle"><a onClick ={()=>this.scrollTo(this.projects)}>work</a></li>
                   <li className = "about-toggle"><a onClick ={()=>this.scrollTo(this.about)}>about</a></li>
-
               </div>
               <div className="hamNav"
                    onClick={()=>this.hamClick()}
@@ -606,6 +647,7 @@ class Main extends React.Component {
                    onMouseLeave = {() => this.hamLeave()}>
                       <span className = "line-one" ref = {hamOne=>this.hamOne=hamOne}></span>
                       <span className="line-two" ref = {hamTwo=>this.hamTwo=hamTwo}></span>
+
               </div>
             </div>
 
@@ -708,9 +750,11 @@ class Main extends React.Component {
                       </div>*/}
                     </div>
 
-                  <div className = "meimage" ref={ homeimage => this.homeimage = homeimage}></div>
+                  <div className = "meimage" ref={ homeimage => this.homeimage = homeimage}>
+                    <p className = "about-me-second">UI/UX Code Graphic Industrial</p>
+                  </div>
 
-                  <p className = "about-me-second">UI/UX Code Graphic Industrial</p>
+
 
                     <div className = "contact-list">
                       <li><a href = "mailto:ejvoll@umich.edu">Email</a></li>
