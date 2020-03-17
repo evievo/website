@@ -32,6 +32,7 @@ var loadTl = new TimelineMax();
 var ham = new TimelineMax();
 var hamToggle = {timeline: new TimelineMax(), toggled: false};
 var introMoved = false;
+var timelineIntro = new TimelineMax();
 gsap.registerPlugin( ScrollToPlugin);
 
 
@@ -122,6 +123,7 @@ class Main extends React.Component {
     ham.to(this.hamTwo, .2, {x: 3}, "-=.2");
     hamToggle.timeline.pause();
     hamToggle.timeline.to(this.navList, .3, {x: 30, opacity: 0, ease: Power1.easeOut});
+    TweenMax.set("#mobile", {y:-2000, opacity:0});
 
   /*  logoTl.set(this.logo_outline, {opacity:1});
     logoTl.set(this.logo_filled, {opacity:1});
@@ -178,6 +180,7 @@ class Main extends React.Component {
       let h = window.innerHeight;
 
       this.setState({width: w, height: h});
+      this.toppage();
 
     });
 
@@ -276,12 +279,23 @@ class Main extends React.Component {
     const controller = new ScrollMagic.Controller();
   //  var sections = [this.home, this.list, this.about]
     var intro = this.intro;
-    var timelineIntro = new TimelineMax();
+    timelineIntro.clear();
 
-    timelineIntro.to(".intro-2020", 1,{ x: -1000, opacity:.5,ease: Power1.easeInOut});
-    timelineIntro.to(".intro-portfolio", 1,{ skewY: -3,y: -5500, opacity:.5,ease: Power1.easeInOut},"-=1.5");
-    timelineIntro.to(".scroll-icon", 2, {rotation: 360, ease: Power1.easeInOut}, "-=2");
-    timelineIntro.to(".scroll-icon", 2, { y: -1000, opacity:.5, ease: Power1.easeInOut}, "-=2");
+
+
+
+
+    if(this.state.width <= 650){
+      timelineIntro.to(".intro-portfolio", 1,{ skewX: -3,x: -5500, opacity:.5,ease: Power1.easeInOut},"-=1.5");
+      timelineIntro.to(".scroll-icon", 2, {rotation: 360, ease: Power1.easeInOut}, "-=2");
+      timelineIntro.to(".scroll-icon", 2, { x: -2000, opacity:.5, ease: Power1.easeInOut}, "-=2");
+    }
+    else{
+      timelineIntro.to(".intro-portfolio", 1,{ skewY: -3,y: -5500, opacity:.5,ease: Power1.easeInOut},"-=1.5");
+      timelineIntro.to(".scroll-icon", 2, {rotation: 360, ease: Power1.easeInOut}, "-=2");
+      timelineIntro.to(".scroll-icon", 2, { y: -1000, opacity:.5, ease: Power1.easeInOut}, "-=2");
+    }
+
     timelineIntro.to(".name", 1, { y: -300, opacity:.5, ease: Power1.easeInOut}, "-=2");
 
 
@@ -387,9 +401,6 @@ class Main extends React.Component {
         details *= -1;
       }
       TweenMax.to(this['details_' + i], .6, {x:details, opacity: 1});
-
-
-
   });
 
   }
@@ -527,7 +538,7 @@ class Main extends React.Component {
     if(this.state.width <= 650) {
       if(this.state.showMobile === false){
         this.setState({showMobile: true});
-        TweenMax.set("#mobile", {y:0});
+        TweenMax.set("#mobile", {y:0, opacity:.9});
         TweenMax.from("#mobile", 2, {y: -2000});
       }
       else{
@@ -667,7 +678,6 @@ class Main extends React.Component {
 
               <div className = "intro" ref= {intro => this.intro = intro}>
                 <img className= "intro-grid" src = {Assets['Grid']} alt = "Griddd"/>
-                <p className = "intro-2020"><br></br>Designer <br></br> Devolper<span></span></p>
                 <p className = "intro-portfolio"> 2020 <br></br>Portfolio<span></span></p>
                 <img className = "scroll-icon" src={Assets['Scroll']} alt="Scroll_ICON" />
               </div>

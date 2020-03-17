@@ -10,10 +10,14 @@
   --type-size-h1: 110pt;
   --type-size-h1-outline: 90pt;
   --type-size-h2: 40pt;
+  --type-size-body:29pt;
   --thumb-width: 900px;
   --thumb-height: 600px;
   --marg-proj: 100px;
   --grid-size: 800px;
+  --letter-spacing: -10px;
+  --bio-size: 70vw;
+  --icon-size: 100px;
 
 }
 
@@ -36,34 +40,79 @@ html, body {
 
 @media only screen  and (max-width: 650px) {
   :root{
-    --type-size-h1-outline: 60pt;
-    --type-size-h1: 70pt;
+    --type-size-h1-outline: 40pt;
+    --type-size-h1: 60pt;
     --type-size-h2: 20pt;
     --thumb-width: 375px;
     --thumb-height: 250px;
     --marg-proj: 30px;
     --grid-size: 80vh;
+    --letter-spacing: -5px;
+    --type-size-body: 15pt;
+    --icon-size: 80px;
+
    }
    #navbar .navNav{
      opacity: 0;
    }
 
    #fixed .intro{
-     padding-left: 50px;
-     transform: rotate(90deg)!important;
+     transform: rotate(90deg);
+     padding-top: 13vh;
+     padding-left: 25vw;
+   }
+
+   #fixed .intro .intro-grid{
+
    }
 
    #fixed .intro .scroll-icon{
      left:auto;
-     right: -50px;
-     top:0px;
-     transform: rotate(-90deg)!important;
+     left: 100px;
+     top:15vh;
+     height: 80px;
+     width: 80px;
+     transform: rotate(-90deg);
    }
+
+   #navbar .mainNav {
+     width:50px!important;
+   }
+
+   #fixed .name h1{
+     top: 0px!important;
+     left: 80px!important;
+     font-size: 10pt!important;
+     letter-spacing: 0px!important;
+     line-height: 1!important;
+   }
+
+
+
 
 
 
 
 }
+@media only screen and (max-width: 900px){
+  #about .contact-list{
+    margin-top: 50px!important;
+
+
+    display: grid!important;
+    width: calc(var(--thumb-width) - 40px);
+
+  }
+
+    #about .contact-list li{
+      margin-top: 10px;
+    }
+
+    #footer .top-button{
+      margin-top: 10px;
+    }
+}
+
 @media only screen and (max-width: 900px) and (min-width: 651px) {
   :root{
     --type-size-h1-outline: 60pt;
@@ -73,6 +122,8 @@ html, body {
     --thumb-height: 350px;
     --marg-proj: 40px;
     --grid-size: 600px;
+    --bio-size:90vw;
+    --type-size-body: 20pt;
    }
 
    #fixed .intro .intro-portfolio{
@@ -181,6 +232,7 @@ a:hover, a:active { text-decoration: none;}
 }
 
 #mobile {
+  opacity: 0;
   position: fixed;
   left:0px;
   top:0px;
@@ -188,7 +240,7 @@ a:hover, a:active { text-decoration: none;}
   width: 100vw;
   height: 100vh;
   background-color: blue;
-  opacity: .9;
+
 }
 
 #mobile .mobileNav{
@@ -199,7 +251,7 @@ a:hover, a:active { text-decoration: none;}
   margin-right: auto;
   font-family: var(--type-fam-reg);
   list-style: none;
-  font-size: var(--type-size-h2);
+  font-size: 40pt;
   text-align: center;
 
 }
@@ -325,6 +377,8 @@ a:hover, a:active { text-decoration: none;}
 }
 #fixed .intro-grid{
 
+
+
   display: block;
   padding-top: 50px;
   position: relative;
@@ -389,45 +443,13 @@ a:hover, a:active { text-decoration: none;}
 
 }
 
-#fixed .intro .intro-2020{
-  font-family: var(--type-fam-serif);
-  font-style: italic;
-  font-size:20pt;
-  margin-left: -50px;
-  margin-top: 465px;
-  text-align: right;
-  float:left;
-  transform: rotate(-90deg);
-}
-#fixed .intro .intro-2020 span{
-  width: 1px;
-  height:200px;
-  position: absolute;
-  right:-40px;
-  bottom: -10px;
-  background-color: white;
-}
 
-#fixed .intro .two {
-  margin-top: -15px;
-  font-family: var(--type-fam-serif);
-  font-weight: 300;
-  text-align: left;
-  color: rgba(0,0,0,0);
-  -webkit-text-stroke: 1px white;
-}
-#fixed .intro .three {
-  margin-top: -40px;
-  text-align: left;
-  color: rgba(0,0,0,0);
-  -webkit-text-stroke: 1px white;
-}
 #fixed .intro .intro-portfolio{
   position: absolute;
   bottom: -200px;
   right: -100px;
   font-family: var(--type-fam-reg);
-  letter-spacing: -10px;
+  letter-spacing: var(--letter-spacing);
   margin-left: auto;
   margin-right: 40px;
   line-height: 1;
@@ -450,8 +472,8 @@ a:hover, a:active { text-decoration: none;}
   z-index: -1;
   left:200px;
   top:10px;
-  height: 700px;
-  width: 700px;
+  height: 0px;
+  width:0px;
 
 }
 
@@ -535,6 +557,7 @@ a:hover, a:active { text-decoration: none;}
 
 
 
+
 .logo{
 
   margin-left: auto;
@@ -576,12 +599,12 @@ a:hover, a:active { text-decoration: none;}
   font-size:var(--type-size-h1-outline);
   color: rgba(0,0,0,0);
   font-weight: 300;
-  text-transform: none;
+  text-transform: uppercase;
   position: relative;
   margin-left: 25px;
   margin-top: 380px;
   -webkit-text-stroke: .75px white;
-  letter-spacing: -5px;
+  letter-spacing: var(--letter-spacing);
   width: 200px;
   line-height: .9;
 
@@ -896,18 +919,18 @@ a:hover, a:active { text-decoration: none;}
 #about .about-me-first{
   font-family: var(--type-fam-reg);
   position: relative;
-  margin-top: -60px;
+  margin-top: -20px;
   margin-left: 30px;
   margin-right: auto;
   line-height: 1.2;
-  height:0vh;
-  width: 60vw;
-  font-size: 25pt;
+
+  width: var(--bio-size);
+  font-size: var(--type-size-body);
   text-align: left;
   font-weight: 300;
   color:white;
   padding-bottom: 5px;
-  float:left;
+
 }
 
 
@@ -920,17 +943,16 @@ a:hover, a:active { text-decoration: none;}
   opacity: 1;
   width:var(--thumb-width);
   height:var(--thumb-height);
-  z-index: -1;
+
 
 
   /*box-shadow: 2px 2px 15px rgba(10,10,11,1);*/
 
   position: relative;
-  margin-top: 500px;
+
   padding-top: 10px;
   margin-left: 0px;
-  background-color: rgba(0,0,0,1);
-  background-size: auto 500px ;
+  background-size: auto 60vw;
   background-image: url('./images/me.jpg');
   background-repeat: no-repeat;
 
@@ -945,7 +967,8 @@ a:hover, a:active { text-decoration: none;}
   font-family: var(--type-fam-serif);
   position: relative;
   margin-top: calc(var(--thumb-height)/3);
-  float: right;
+  margin-right: 6vw;
+  margin-left: auto;
   line-height: 1.1;
   pointer-events: none;
   height:auto;
@@ -978,9 +1001,9 @@ a:hover, a:active { text-decoration: none;}
 }
 #about .about-me-header{
   color: rgba(0,0,0,0);
-  text-transform: none;
+  text-transform: uppercase;
   font-size:var(--type-size-h1-outline);
-  letter-spacing: -10px;
+  letter-spacing: var(--letter-spacing);
   text-align: left;
   font-weight: 300;
   font-family: var(--type-fam-reg);
@@ -1008,7 +1031,7 @@ a:hover, a:active { text-decoration: none;}
   color:white;
   position: relative;
   margin-left: 35px;
-  margin-top: 200px;
+  margin-top: 60px;
   font-family: var(--type-fam-serif);
   font-style: italic;
   font-size: 14pt;
@@ -1019,7 +1042,7 @@ a:hover, a:active { text-decoration: none;}
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  width: var(--thumb-width);
+  width: calc(var(--thumb-width) - 40px);
   list-style:none;
   text-transform: uppercase;
 
@@ -1291,10 +1314,10 @@ a:hover, a:active { text-decoration: none;}
 }
 #footer .top-button{
   position: absolute;
-  height: 100px;
-  width:100px;
+  height: var(--icon-size);
+  width: var(--icon-size);
   right: 35px;
-  top: -70px;
+  top: -90px;
 }
 #footer .bar{
   position: absolute;
