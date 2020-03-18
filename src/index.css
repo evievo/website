@@ -9,6 +9,7 @@
   --type-size-h1: 110pt;
   --type-size-h1-outline: 90pt;
   --type-size-h2: 40pt;
+  --type-size-h3: 10pt;
   --type-size-body:29pt;
   --thumb-width: 900px;
   --thumb-height: 600px;
@@ -36,6 +37,9 @@ html, body {
   overflow-x: hidden;
   background-color: var(--main-grey-color);
 }
+@media only screen  and (max-width: 350px) {
+
+}
 
 @media only screen  and (max-width: 650px) {
   :root{
@@ -51,6 +55,7 @@ html, body {
     --type-size-body: 12pt;
     --icon-size: 80px;
     --marg:8px;
+    --type-size-h3: 8pt;
 
    }
    #navbar .navNav{
@@ -137,6 +142,7 @@ html, body {
     --bio-size:90vw;
     --type-size-body: 20pt;
     --marg:15px;
+    --type-size-h3: 9pt;
    }
 
    #fixed .intro .intro-portfolio{
@@ -679,6 +685,7 @@ a:hover, a:active { text-decoration: none;}
   font-size: var(--type-size-h2);
   color: white;
   font-family: var(--type-fam-serif);
+  font-style: italic;
   text-transform: uppercase;
   font-weight: 300;
   line-height: 1;
@@ -730,7 +737,7 @@ a:hover, a:active { text-decoration: none;}
   opacity: 0;
   font-family: var(--type-fam-reg);
   z-index: 10;
-  font-size: 10pt;
+  font-size: var(--type-size-h3);
   text-transform: uppercase;
   font-weight: 300;
   color: white;
@@ -992,11 +999,13 @@ a:hover, a:active { text-decoration: none;}
 
 #about .section-one em{
   font-family: var(--type-fam-serif);
+  font-style: italic;
 }
 
 #about .about-me-second{
 
   font-family: var(--type-fam-serif);
+  font-style: italic;
   position: relative;
   margin-top: calc(var(--thumb-height)/3);
   margin-right: 6vw;

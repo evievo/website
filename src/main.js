@@ -386,14 +386,25 @@ class Main extends React.Component {
     this.mouseHover();
 
     this['imagebox_' + i].addEventListener("mousemove", (e) => {
-      let details = 50;
+      let details = 35;
+      if((this.state.width < 400 && this.state.width < 749)){
+        details = 40;
+      }
+      else if((this.state.width > 750 && this.state.width < 1000)){
+        details = 45;
+        if(i % 2 === 0){details *= -1};
+      }
+      else if((this.state.width > 1001)){
+        details = 50;
+        if(i % 2 === 0){details *= -1};
+      }
+
+
       let x = (this.mapscreen(e.clientX, window.innerWidth)*.01);
       let y = (this.mapscreen(e.clientY, window.innerHeight)*.018);
       TweenMax.to(this['thumbnail_' + i], 0.4,{x: x,y:y, scale: 1.05,  ease: Power1.easeOut});
       TweenMax.to(this['title_' + i], 0.4,{ opacity:1});
-      if(i % 2 === 0){
-        details *= -1;
-      }
+
       TweenMax.to(this['details_' + i], .6, {x:details, opacity: 1});
   });
 

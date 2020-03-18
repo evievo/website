@@ -21,7 +21,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Year: "2019",
                  Thumbnail: coasters,
                  Archived: false,
-                 Category: "graphic",
+                 Category: "Graphic/Industrial",
                  Data: data[0],
                  Url: "https://www.behance.net/gallery/93917927/Industrial-Coasters",
                };
@@ -31,7 +31,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Year: "2019",
                  Thumbnail: clock,
                  Archived: false,
-                 Category: "industrial",
+                 Category: "Graphic/Industrial",
                  Data: data[0],
                  Url: "https://www.behance.net/gallery/93917691/Play-Time-Clock",
                };
@@ -41,7 +41,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Year: "2019",
                  Thumbnail: ggbl,
                  Archived: false,
-                 Category: "graphic",
+                 Category: "Graphic",
                  Data: data[0],
                  Url: "https://www.behance.net/gallery/93918041/GGBL-Wayfinding",
                };
@@ -51,7 +51,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Year: "2019",
                  Thumbnail: ember,
                  Archived: false,
-                 Category: "industrial",
+                 Category: "Industrial",
                  Data: data[0],
                  Url: "https://www.behance.net/gallery/93734863/ember-a-urn-for-your-data"
                 };
@@ -61,7 +61,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Year: "2019",
                  Thumbnail: groovie,
                  Archived: false,
-                 Category: "industrial - ui/ux",
+                 Category: "industrial/UX",
                  Data: groovieData,
                  Url: "https://www.behance.net/gallery/93848625/Groovie"
                 };
@@ -71,7 +71,7 @@ import chair from './images/thumbnails/chair.jpg'
                  Year: "2019",
                  Thumbnail: pages,
                  Archived: false,
-                 Category: "industrial",
+                 Category: "UI/UX",
                  Data: data[0],
                  Url: "",
                 };
