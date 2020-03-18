@@ -2,8 +2,7 @@
 
 :root{
   --main-grey-color: rgba(25, 24, 23);
-  --marg-right: 100px;
-  --marg-left: 100px;
+  --marg: 20px;
   --type-fam-reg: 'acumin-pro-wide', sans-serif;
   --type-fam-serif: 'baskerville-poster-pt', serif;
   --block-top: 24px;
@@ -42,14 +41,16 @@ html, body {
   :root{
     --type-size-h1-outline: 40pt;
     --type-size-h1: 60pt;
-    --type-size-h2: 20pt;
+    --type-size-h2: 22pt;
     --thumb-width: 375px;
     --thumb-height: 250px;
     --marg-proj: 30px;
     --grid-size: 80vh;
     --letter-spacing: -5px;
-    --type-size-body: 15pt;
+    --bio-size:80vw;
+    --type-size-body: 12pt;
     --icon-size: 80px;
+    --marg:8px;
 
    }
    #navbar .navNav{
@@ -62,9 +63,6 @@ html, body {
      padding-left: 25vw;
    }
 
-   #fixed .intro .intro-grid{
-
-   }
 
    #fixed .intro .scroll-icon{
      left:auto;
@@ -86,6 +84,20 @@ html, body {
      letter-spacing: 0px!important;
      line-height: 1!important;
    }
+
+   #projects .list .project-container .title{
+     bottom: -10px!important;
+     top: auto!important;
+     right:auto!important;
+     left:10px!important;
+   }
+
+   #about .about-me-second{
+     margin-right:auto!important;
+     margin-left: 20px!important;
+   }
+
+
 
 
 
@@ -124,6 +136,7 @@ html, body {
     --grid-size: 600px;
     --bio-size:90vw;
     --type-size-body: 20pt;
+    --marg:15px;
    }
 
    #fixed .intro .intro-portfolio{
@@ -142,6 +155,7 @@ html, body {
     --thumb-height: 500px;
     --marg-proj: 60px;
     --grid-size: 700px;
+    --marg:18px;
    }
 }
 
@@ -210,9 +224,9 @@ a:hover, a:active { text-decoration: none;}
   width: 24px;
   height: 24px;
   position: absolute;
-  z-index: 997;
+  z-index: 999;
   box-shadow: 2px;
-  z-index: 997;
+
   pointer-events: none;
 
   background-color: blue;
@@ -240,6 +254,7 @@ a:hover, a:active { text-decoration: none;}
   width: 100vw;
   height: 100vh;
   background-color: blue;
+  overflow: hidden;
 
 }
 
@@ -257,6 +272,25 @@ a:hover, a:active { text-decoration: none;}
 }
 #mobile .mobileNav li{
   padding-bottom: 10vh;
+
+}
+#mobile .mobileSocail span{
+  height: 1px;
+  width: 60px;
+  position: relative;
+  margin-left: auto;
+  margin-right:auto;
+  background-color: white;
+}
+#mobile .mobileSocail{
+  list-style: none;
+  font-size: 10pt;
+  font-family: var(--type-fam-serif);
+  font-style: italic;
+  text-align: center;
+}
+#mobile .mobileSocail li{
+  padding-bottom: 15px;
 }
 
 
@@ -341,7 +375,7 @@ a:hover, a:active { text-decoration: none;}
   position: relative;
   margin-left: auto;
   margin-right:2px;
-  margin-top: 15px;
+  margin-top: 10px;
   width:100px;
   height: 70px;
   z-index: 999;
@@ -351,7 +385,7 @@ a:hover, a:active { text-decoration: none;}
   position: absolute;
   top:20px;
   right:25px;
-  width:45px;
+  width:40px;
   height: 1px;
   background-color: white;
 }
@@ -360,7 +394,7 @@ a:hover, a:active { text-decoration: none;}
   position: absolute;
   top:38px;
   right:28px;
-  width:45px;
+  width:40px;
   height: 1px;
   background-color: white;
 }
@@ -601,7 +635,7 @@ a:hover, a:active { text-decoration: none;}
   font-weight: 300;
   text-transform: uppercase;
   position: relative;
-  margin-left: 25px;
+  margin-left: var(--marg);
   margin-top: 380px;
   -webkit-text-stroke: .75px white;
   letter-spacing: var(--letter-spacing);
@@ -901,7 +935,7 @@ a:hover, a:active { text-decoration: none;}
 /*-----------------ABOUT--------------------------*/
 
 #about{
-  padding-top: 60vh;
+  padding-top: 40vh;
   grid-row-start: 3;
   position: relative;
   width: 100vw;
@@ -920,23 +954,21 @@ a:hover, a:active { text-decoration: none;}
   font-family: var(--type-fam-reg);
   position: relative;
   margin-top: -20px;
-  margin-left: 30px;
+  margin-left: calc(var(--marg));
   margin-right: auto;
   line-height: 1.2;
-
+  text-transform: uppercase;
   width: var(--bio-size);
   font-size: var(--type-size-body);
   text-align: left;
   font-weight: 300;
   color:white;
-  padding-bottom: 5px;
+  padding-bottom: 5vh;
 
 }
 
-
-
 #about .about-me-first p::after {
-  content: " I recently graduated from the University of Michigan with a focus in digital and physical product design. Lorem ipsum dolor sit amet, consectetuer adipismod tincidunt ut laoreet dolore magnanibh euismod tincidunt ut laoreet dolore magnanibh euism dunt ut laoreet dolore magnanibh euismod tinc od gna."
+  content: ""
 }
 
 #about .meimage{
@@ -950,7 +982,7 @@ a:hover, a:active { text-decoration: none;}
 
   position: relative;
 
-  padding-top: 10px;
+  padding-top: 20px;
   margin-left: 0px;
   background-size: auto 60vw;
   background-image: url('./images/me.jpg');
@@ -980,8 +1012,9 @@ a:hover, a:active { text-decoration: none;}
   color:white;
 }
 
-#about .about-me-second::after{
-  content: "";
+#about .about-me-first a{
+  padding-top: 10px;
+  color:white;
 }
 
 
@@ -1011,7 +1044,7 @@ a:hover, a:active { text-decoration: none;}
   position: relative;
   top: 20px;
   z-index: 21;
-  margin-left: 20px;
+  margin-left: var(--marg);
   line-height: .9;
   width: 200px;
   -webkit-text-stroke: .75px white;

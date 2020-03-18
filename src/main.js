@@ -562,10 +562,11 @@ class Main extends React.Component {
     return(
       <div>
         <div className = "mobileNav">
-            <li>work</li>
-            <li>about</li>
+            <li onClick= {()=>{this.hamClick();this.scrollTo(this.projects);}}>work</li>
+            <li onClick= {()=>{this.hamClick();this.scrollTo(this.about);}}>about</li>
         </div>
         <div className = "mobileSocail">
+          <span></span>
           <li><a href = "mailto:ejvoll@umich.edu">Email</a></li>
           <li><a href = "https://www.behance.net/evanvollick" traget = "_blank"> Behance </a></li>
           <li><a href = "https://www.linkedin.com/in/evan-vo/" traget = "_blank"> LinkedIn</a></li>
@@ -746,7 +747,13 @@ class Main extends React.Component {
                       <h3>Hello World</h3>
 
                   </div>
-                  <div className = "about-me-first"><p>I'm <em>Evan.</em></p>
+                  <div className = "about-me-first">
+                    <p>I'm <em>Evan. </em>
+                      I am multidisciplinary designer working to design products and
+                      experiences by investigating and constructing future products.
+                      I consider dystopian outcomes and optimal perspectives by speculating
+                      on current trends of data, technology, and products. <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>
+                   </p>
                     {/*<div className = "me-list">
                       <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
                       <li><a><Link to ="/Archive">Archive</Link></a></li>
