@@ -760,7 +760,7 @@ class Main extends React.Component {
                   </div>
                   <div className = "about-me-first">
                     <p>I'm <em>Evan. </em>
-                      I am multidisciplinary designer working to design products and
+                      I am a multidisciplinary designer working to design products and
                       experiences by investigating and constructing future products.
                       I consider dystopian outcomes and optimal perspectives by speculating
                       on current trends of data, technology, and products. <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>

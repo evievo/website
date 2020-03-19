@@ -991,7 +991,7 @@ a:hover, a:active { text-decoration: none;}
 
   padding-top: 20px;
   margin-left: 0px;
-  background-size: auto 60vw;
+  background-size: auto var(--thumb-width);
   background-image: url('./images/me.jpg');
   background-repeat: no-repeat;
 
