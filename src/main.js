@@ -125,7 +125,7 @@ class Main extends React.Component {
     hamToggle.timeline.to(this.navList, .3, {x: 30, opacity: 0, ease: Power1.easeOut});
     TweenMax.set("#mobile", {y:-2000, opacity:0});
 
-  /*  logoTl.set(this.logo_outline, {opacity:1});
+    logoTl.set(this.logo_outline, {opacity:1});
     logoTl.set(this.logo_filled, {opacity:1});
     logoTl.to(this.logo_filled, .6, {opacity:1});
     logoTl.set(this.logo_filled, {opacity:0});
@@ -147,19 +147,20 @@ class Main extends React.Component {
     loadTl.to(this.logo_filled_load, .6, {opacity:1});
     loadTl.set(this.logo_filled_load, {opacity:0});
     loadTl.to(this.logo_filled_load, .6, {opacity:0});
-    loadTl.set(this.logo_outline_load, {opacity:0});*/
+    loadTl.set(this.logo_outline_load, {opacity:0});
 
     //loadTl.to(this.load, 3, {opacity:0});
 
     TweenMax.set(this.archpage, {y:-800, ease: Power1.easeOut});
 
 
-    /*window.addEventListener('load', (e) => {
+    window.addEventListener('load', (e) => {
 
-      loadTl.to(this.load, 1.5, {x:this.state.width, ease: Power3.easeOut}).then(() => {
-      loadTl.pause()});
+      loadTl.to(this.load, .5, {x:this.state.width, ease: Power3.easeOut}).then(() => {
+      loadTl.pause();});
+      loadTl.set(this.load, {opacity:0});
 
-    });*/
+    });
 
     var links = document.getElementsByTagName("a");
     for(let i = 0; i < links.length; i++){
@@ -629,10 +630,10 @@ class Main extends React.Component {
          <div id="website" ref={ website => this.website = website }>
 
 
-           {/*<div className = "load" ref ={ load => this.load = load }>
+           <div className = "load" ref ={ load => this.load = load }>
              <img src = {Assets["Logo_outlines"]} alt = "logo outline load" ref={ logo_outline_load => this.logo_outline_load = logo_outline_load}/>
              <img src = {Assets["Logo_filled"]} alt = "logo filled load" ref={ logo_filled_load => this.logo_filled_load = logo_filled_load}/>
-           </div>*/}
+           </div>
 
             <div className="cursor" ref={ cursor => this.cursor = cursor }></div>
             <span className="scroll-bar" ref = {scroll => this.scroll = scroll}></span>

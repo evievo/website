@@ -183,12 +183,14 @@ html, body {
   width: 100vw;
   background-color: blue;
   overflow: hidden;
+  pointer-events: none;
 }
 
 .load img{
   margin-right: 35%;
   margin-left: 35%;
-  margin-top: 250px;
+  margin-top: 30vh;
+  margin-bottom: auto;
   width: auto;
   position: absolute;
   height: auto;
