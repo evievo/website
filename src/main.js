@@ -764,7 +764,7 @@ class Main extends React.Component {
                       I am a multidisciplinary designer working to design products and
                       experiences by investigating and constructing future products.
                       I consider dystopian outcomes and optimal perspectives by speculating
-                      on current trends of data, technology, and products. <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>
+                      on current trends of data, technology, and products. (This site is designed and programmed by myself). <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>
                    </p>
                     {/*<div className = "me-list">
                       <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
