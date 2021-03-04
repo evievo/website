@@ -685,7 +685,7 @@ class Main extends React.Component {
 
               <div className = "intro" ref= {intro => this.intro = intro}>
                 <img className= "intro-grid" src = {Assets['Grid']} alt = "Griddd"/>
-                <p className = "intro-portfolio"> Evan's <br></br>Portfolio<span></span></p>
+                <p className = "intro-portfolio"> <br></br>Portfolio<span></span></p>
                 <img className = "scroll-icon" src={Assets['Scroll']} alt="Scroll_ICON" />
               </div>
 
@@ -774,13 +774,13 @@ class Main extends React.Component {
                     </div>
 
                   <div className = "meimage" ref={ homeimage => this.homeimage = homeimage}>
-                    <p className = "about-me-second">UI/UX Code Graphic Industrial</p>
+                    <p className = "about-me-second">Code Graphic Industrial</p>
                   </div>
 
 
 
                     <div className = "contact-list">
-                      <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
+                      <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2021">Resume</a></li>
                       <li><a href = "mailto:ejvoll@umich.edu">Email</a></li>
                       <li><a href = "https://www.behance.net/evanvollick" traget = "_blank"> Behance </a></li>
                       <li><a href = "https://www.linkedin.com/in/evan-vo/" traget = "_blank"> LinkedIn</a></li>
