@@ -685,7 +685,7 @@ class Main extends React.Component {
 
               <div className = "intro" ref= {intro => this.intro = intro}>
                 <img className= "intro-grid" src = {Assets['Grid']} alt = "Griddd"/>
-                <p className = "intro-portfolio"> 2020 <br></br>Portfolio<span></span></p>
+                <p className = "intro-portfolio"> Evan's <br></br>Portfolio<span></span></p>
                 <img className = "scroll-icon" src={Assets['Scroll']} alt="Scroll_ICON" />
               </div>
 
