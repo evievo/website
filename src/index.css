@@ -24,6 +24,7 @@
 * {
   box-sizing: border-box;
   cursor: hidden;
+
 }
 
 
@@ -110,6 +111,8 @@ html, body {
 
 
 
+
+
 }
 @media only screen and (max-width: 900px){
   #about .contact-list{
@@ -181,7 +184,7 @@ html, body {
   z-index: 999;
   height: 100vh;
   width: 100vw;
-  background-color: blue;
+  background-color: var(--main-grey-color);
   overflow: hidden;
   pointer-events: none;
 }
@@ -200,7 +203,7 @@ html, body {
   position: absolute;
   right: -2px;
   top: 0px;
-  background-color: blue;
+  background-color: white;
   width: 3px;
   height: 8px;
   z-index: 60;
@@ -237,7 +240,7 @@ a:hover, a:active { text-decoration: none;}
 
   pointer-events: none;
 
-  background-color: blue;
+  background-color: rgba(250,250,250,.95);
   /*border: .9px dashed;*/
 
   border-radius: 50%;
@@ -261,7 +264,7 @@ a:hover, a:active { text-decoration: none;}
   z-index: 998;
   width: 100vw;
   height: 100vh;
-  background-color: blue;
+  background-color: rgba(0,0,0,.9);
   overflow: hidden;
 
 }
@@ -370,7 +373,7 @@ a:hover, a:active { text-decoration: none;}
   height: 30px;
   width: 30px;
   border-radius: 50%;
-  border: 1px solid blue;
+  border: 1px solid rgba(255,152,250,1);;
 }
 
 #navbar .navNav li{
@@ -428,6 +431,18 @@ a:hover, a:active { text-decoration: none;}
   height: auto;
   width: var(--grid-size);
   opacity: .99;
+
+}
+
+#fixed .chrome-type{
+  opacity: 1;
+  position: relative;
+
+  height: auto;
+  width:var(--thumb-width);
+  margin-top: 2px;
+
+
 }
 
 #fixed .background-circle{
@@ -488,7 +503,7 @@ a:hover, a:active { text-decoration: none;}
 
 #fixed .intro .intro-portfolio{
   position: absolute;
-  bottom: -200px;
+  bottom: -500px;
   right: -100px;
   font-family: var(--type-fam-reg);
   letter-spacing: var(--letter-spacing);
@@ -898,7 +913,7 @@ a:hover, a:active { text-decoration: none;}
 }
 .archive-wrap .blob{
   border-radius: 50%;
-  background-color: blue;
+  background-color: rgba(255,152,250,1);;
   height:20px;
   width: 20px;
   opacity: 0;
@@ -940,6 +955,8 @@ a:hover, a:active { text-decoration: none;}
   top: 40px;
   right: 40px;
 }
+
+
 
 /*-----------------ABOUT--------------------------*/
 
@@ -995,7 +1012,7 @@ a:hover, a:active { text-decoration: none;}
   margin-left: 0px;
   background-size: auto var(--thumb-width);
   background-image: url('./images/me.jpg');
-  background-repeat: no-repeat;
+  background-repeat: trepeat;
 
 }
 
@@ -1385,6 +1402,11 @@ a:hover, a:active { text-decoration: none;}
   margin-left: auto;
   margin-right: 40px;
   float: right;
+}
+
+#footer i{
+  font-family: var(--type-fam-serif);
+
 }
 
 

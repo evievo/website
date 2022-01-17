@@ -136,18 +136,24 @@ class Main extends React.Component {
 
 
 
+    loadTl.set(this.logo_outline_load, {scale: 2, opacity:0});
+    loadTl.set(this.logo_filled_load, {scale: 2, opacity:1});
+    loadTl.to(this.logo_filled_load, .6, {opacity:1});
+    loadTl.set(this.logo_filled_load, {opacity:0});
+    loadTl.to(this.logo_filled_load, .6, {opacity:0});
     loadTl.set(this.logo_outline_load, {opacity:1});
+    loadTl.to(this.logo_outline_load, .6, {opacity:1});
+    loadTl.set(this.logo_outline_load, {opacity:0});
+    loadTl.to(this.logo_outline_load, .6, {opacity:0});
     loadTl.set(this.logo_filled_load, {opacity:1});
     loadTl.to(this.logo_filled_load, .6, {opacity:1});
     loadTl.set(this.logo_filled_load, {opacity:0});
     loadTl.to(this.logo_filled_load, .6, {opacity:0});
-    loadTl.set(this.logo_outline_load, {opacity:0});
     loadTl.set(this.logo_outline_load, {opacity:1});
-    loadTl.set(this.logo_filled_load, {opacity:1});
-    loadTl.to(this.logo_filled_load, .6, {opacity:1});
-    loadTl.set(this.logo_filled_load, {opacity:0});
-    loadTl.to(this.logo_filled_load, .6, {opacity:0});
+    loadTl.to(this.logo_outline_load, .6, {opacity:1});
     loadTl.set(this.logo_outline_load, {opacity:0});
+    loadTl.to(this.logo_outline_load, .6, {opacity:0});
+
 
     //loadTl.to(this.load, 3, {opacity:0});
 
@@ -631,8 +637,8 @@ class Main extends React.Component {
 
 
            <div className = "load" ref ={ load => this.load = load }>
-             <img src = {Assets["Logo_outlines"]} alt = "logo outline load" ref={ logo_outline_load => this.logo_outline_load = logo_outline_load}/>
-             <img src = {Assets["Logo_filled"]} alt = "logo filled load" ref={ logo_filled_load => this.logo_filled_load = logo_filled_load}/>
+             <img src = {Assets["Logo_one"]} alt = "logo outline load" ref={ logo_outline_load => this.logo_outline_load = logo_outline_load}/>
+             <img src = {Assets["Logo_two"]} alt = "logo filled load" ref={ logo_filled_load => this.logo_filled_load = logo_filled_load}/>
            </div>
 
             <div className="cursor" ref={ cursor => this.cursor = cursor }></div>
@@ -685,7 +691,9 @@ class Main extends React.Component {
 
               <div className = "intro" ref= {intro => this.intro = intro}>
                 <img className= "intro-grid" src = {Assets['Grid']} alt = "Griddd"/>
-                <p className = "intro-portfolio"> <br></br>Portfolio<span></span></p>
+                <p className = "intro-portfolio"> <br></br>
+                    <img className = "chrome-type" src={Assets['Chrome']} alt="Chrome_Type" />
+                <span></span></p>
                 <img className = "scroll-icon" src={Assets['Scroll']} alt="Scroll_ICON" />
               </div>
 
@@ -756,15 +764,12 @@ class Main extends React.Component {
                 <div className = "section-one">
                   <div className = "about-me-header">
                       <span></span>
-                      <h3>Hello World</h3>
+                      <h3>Jello!</h3>
 
                   </div>
                   <div className = "about-me-first">
-                    <p>I'm <em>Evan. </em>
-                      I am a multidisciplinary designer working to design products and
-                      experiences by investigating and constructing future products.
-                      I consider dystopian outcomes and optimal perspectives by speculating
-                      on current trends of data, technology, and products. (This site is designed and programmed by myself). <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>
+                    <p>I'm Evan<em>(VO). </em>
+                      I am a confused designer. <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>
                    </p>
                     {/*<div className = "me-list">
                       <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
@@ -781,7 +786,7 @@ class Main extends React.Component {
 
                     <div className = "contact-list">
                       <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2021">Resume</a></li>
-                      <li><a href = "mailto:ejvoll@umich.edu">Email</a></li>
+                      <li><a href = "https://www.instagram.com/evanvo_/">Instagram</a></li>
                       <li><a href = "https://www.behance.net/evanvollick" traget = "_blank"> Behance </a></li>
                       <li><a href = "https://www.linkedin.com/in/evan-vo/" traget = "_blank"> LinkedIn</a></li>
                       <li><a href = "https://github.com/evievo" traget = "_blank">GitHub</a> </li>
@@ -796,8 +801,8 @@ class Main extends React.Component {
                       <img src={Assets["Top"]} alt="top Button" className="top-button" />
                     </div>
                     <span className ="bar"></span>
-                    <div className = "copyright">© 2020</div>
-                    <div className = "footer-name">EVAN V-O</div>
+                    <div className = "copyright">© 2022</div>
+                    <div className = "footer-name">EVAN<i>(VO)</i></div>
                   </div>
 
 

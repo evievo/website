@@ -26,7 +26,8 @@ class Load extends React.Component {
 
     loadTl.set(this.logo_outline_load, {opacity:1});
     loadTl.set(this.logo_filled_load, {opacity:1});
-    loadTl.to(this.logo_filled_load, .6, {opacity:1});
+    loadTl.to(this.logo_outline_load, {opacity:0});
+    loadTl.to(this.logo_filled_load, .6, {opacity:0});
     loadTl.set(this.logo_filled_load, {opacity:0});
     loadTl.to(this.logo_filled_load, .6, {opacity:0});
     loadTl.set(this.logo_outline_load, {opacity:0});
@@ -50,8 +51,8 @@ render() {
   return (
     <div>
     <div className = "load" ref ={ load => this.load = load }>
-      <img src = {Assets["Logo_outlines"]} alt = "logo outline load" ref={ logo_outline_load => this.logo_outline_load = logo_outline_load}/>
-      <img src = {Assets["Logo_filled"]} alt = "logo filled load" ref={ logo_filled_load => this.logo_filled_load = logo_filled_load}/>
+      <img src = {Assets["Logo_one"]} alt = "logo outline load" ref={ logo_outline_load => this.logo_outline_load = logo_outline_load}/>
+      <img src = {Assets["Logo_two"]} alt = "logo filled load" ref={ logo_filled_load => this.logo_filled_load = logo_filled_load}/>
     </div>
     </div>
   );
