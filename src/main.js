@@ -768,8 +768,12 @@ class Main extends React.Component {
 
                   </div>
                   <div className = "about-me-first">
-                    <p>I'm Evan<em>(VO). </em>
-                      I am a confused designer. <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>
+                    <p>
+                      Evan Vollick-Offer is a designer looking to get after it.
+                      He does graphic design, product design, and can program some.
+                      Evan loves doing lettering work and making things look scary or funky or both.
+                      He skis, mountain bikes, skates and is currently learning chess.
+                       <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>
                    </p>
                     {/*<div className = "me-list">
                       <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
@@ -779,7 +783,7 @@ class Main extends React.Component {
                     </div>
 
                   <div className = "meimage" ref={ homeimage => this.homeimage = homeimage}>
-                    <p className = "about-me-second">Code Graphic Industrial</p>
+                    <p className = "about-me-second">Graphic + Product</p>
                   </div>
 
 
