@@ -769,11 +769,13 @@ class Main extends React.Component {
                   </div>
                   <div className = "about-me-first">
                     <p>
-                      Evan Vollick-Offer is a designer looking to get after it.
+                      Evan Vollick-Offer is a designer looking to get after it,
+                      currently working at <a href = "https://www.reformcollective.com/">Reform Collective</a>.
                       He does graphic design, product design, and can program some.
-                      Evan loves doing lettering work and making things look scary or funky or both.
-                      He skis, mountain bikes, skates and is currently learning chess.
-                       <br></br><a href = "mailto:ejvoll@umich.edu">Get in Touch.</a>
+                      Evan loves doing lettering work, branding, 3D, interactive stuffs and
+                      collaberating with others &#128149;
+
+                       <br></br><a href = "mailto:eeevan.vo@gmail.com">Get in Touch.</a>
                    </p>
                     {/*<div className = "me-list">
                       <li><a href={Assets["Resume_doc"]} download = "Evan's_Resume_2020">Resume</a></li>
